@@ -1,0 +1,38 @@
+<h1>Edit Task</h1>
+<form action="<%= task_url(@task.id) %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <input 
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+    
+  <label for="task_title">Title</label>
+  <input
+    id="task_title"
+    name="task[title]"
+    type="text"
+    value="<%= @task.title %>">
+  <br>
+  
+  <label for="task_description">Description</label>
+  <input
+    id="task_description"
+    name="task[description]"
+    type="text"
+    value="<%= @task.description %>">
+  <br>
+   
+  <label for="task_due_date">Due Date</label>
+  <input type="datetime" name="task_due_date" value="<%= @task.due_date %>">
+  <br>
+  
+  <label for="task_project_id">Project ID</label>
+  <input
+    id="task_project_id"
+    name="task[project_id]"
+    type="text"
+    value="<%= @task.project_id %>">
+  <br>
+  
+  <input type="submit" value="Edit Task">
+</form>

@@ -1,0 +1,10 @@
+<h1><%= @user.username %> Show Page</h1>
+<% @tasks.each do |task| %>
+<a href="<%= task_url(task.id) %>"><%= task.title %></a> 
+<br>
+<%= task.description %>
+<br><br>
+<% end %>
+<a href="<%=new_task_url%>">Create New Task</a>
+<br>
+<a href="<%= new_project_url %>">Create New Project</a>

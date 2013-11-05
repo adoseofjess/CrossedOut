@@ -1,0 +1,33 @@
+<h1>Create Project</h1>
+<form action="<%= projects_url %>" method="post">
+  <input 
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+    
+  <label for="project_title">Title</label>
+  <input
+    id="project_title"
+    name="project[title]"
+    type="text"
+    value="<%= @project.title %>">
+  <br>
+  
+  <label for="project_description">Description</label>
+  <input
+    id="project_description"
+    name="project[description]"
+    type="text"
+    value="<%= @project.description %>">
+  <br>
+  
+  <label for="project_user_id">User ID</label>
+  <input
+    id="project_user_id"
+    name="project[user_id]"
+    type="text"
+    value="<%= @project.user_id %>">
+  <br>
+  
+  <input type="submit" value="Create Project">
+</form>

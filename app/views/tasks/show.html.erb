@@ -1,0 +1,12 @@
+<h1>Task Show Page</h1>
+
+Title: <%= @task.title %>
+<br>
+Description: <%= @task.description %>
+<br>
+Due Date: <% @task.due_date %>
+<br>
+User: <%= User.find(@task.user_id).username %>
+<br>
+<a href="<%= user_url(current_user.id) %>">Back to User Show Page</a>
+<a href="<%= edit_task_url(@task.id)%>">Edit Task</a>
