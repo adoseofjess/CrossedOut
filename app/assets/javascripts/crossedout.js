@@ -4,11 +4,12 @@ window.Crossedout = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // alert("Hello from Backbone!")
+    alert("Hello from Backbone!")
     
     Crossedout.users = new Crossedout.Collections.Users();
     Crossedout.tasks = new Crossedout.Collections.Tasks();
     Crossedout.projects = new Crossedout.Collections.Projects();
+    console.log("About to fetch")
     var that = this;
     Crossedout.projects.fetch({ 
       success: function () {

@@ -10,6 +10,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   },
   
   render: function () {
+    console.log("Sidebar rendering")
     var renderedContent = this.template({
       projects: this.collection
     });

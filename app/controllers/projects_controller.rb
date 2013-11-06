@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   respond_to :json
-  respond_to :html, :only => [:index]
+  # respond_to :html, :only => [:index]
   
   def index
     @projects = Project.all
@@ -25,7 +25,9 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    # @project = Project.save(params[:project])
+    @project = Project.find(params[:id])
+    @project.update_attributes(params[:project])
+    render :json => @project
   end
   
   def destroy
