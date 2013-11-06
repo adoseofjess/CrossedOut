@@ -11,3 +11,24 @@
  *= require_self
  *= require_tree .
  */
+
+.sidebar {
+  border-style: solid;
+  float: left;
+  width: 25%;
+  height: 100%;
+  position: fixed;
+}
+
+.center-pane {
+/*  float: right;  */
+  position: fixed;
+  margin-left: 30%;
+  border-style: solid;
+}
+
+.right-pane {
+  position: fixed;
+  margin-left: 60%;
+  border-style: solid;
+}

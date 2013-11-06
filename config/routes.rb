@@ -1,11 +1,11 @@
 Crossedout::Application.routes.draw do
-  resources :users, :only => [:create, :new, :show]
+  resources :users, :only => [:index, :create, :new, :show]
 
   resource :session, :only => [:create, :destroy, :new]
   
-  resources :tasks, :only => [:new, :create, :edit, :show, :update, :destroy]
+  resources :tasks, :only => [:index, :new, :create, :edit, :show, :update, :destroy]
   
-  resources :projects, :only => [:new, :create, :edit, :show, :update, :destroy]
+  resources :projects, :only => [:index, :new, :create, :edit, :show, :update, :destroy]
 
-  root :to => "users#show"
+  root :to => "static_pages#root"
 end

@@ -1,0 +1,8 @@
+Title: <%= project.get('title') %>
+<br>
+Description: <%= project.get('description') %>
+<br><br>
+Tasks: <% _.each(tasks, function(task) { %>
+  <div class="task-show-link" data-id="<%= task.id %>"><a href="/tasks/<%= task.id %>"><%= task.get('title') %></a></div>
+  
+  <% }); %>

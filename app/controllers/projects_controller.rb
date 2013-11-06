@@ -1,4 +1,12 @@
 class ProjectsController < ApplicationController
+  respond_to :json
+  respond_to :html, :only => [:index]
+  
+  def index
+    @projects = Project.all
+    render :json => @projects
+  end
+  
   def new
     @project = Project.new
   end
