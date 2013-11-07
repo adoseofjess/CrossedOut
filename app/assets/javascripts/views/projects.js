@@ -2,7 +2,6 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   template: JST["projects/index"],
   
   initialize: function () {
-    
   },
   
   events: {
@@ -10,7 +9,6 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   },
   
   render: function () {
-    console.log("Sidebar rendering")
     var renderedContent = this.template({
       projects: this.collection
     });
@@ -24,20 +22,9 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     var id = parseInt($(event.currentTarget).attr('data-id'))    
     var projectDetailView = new Crossedout.Views.ProjectShowView({ model: this.collection.get(id) });
     $(".center-pane").html(projectDetailView.render().$el);
-    
-    // $(".center-pane").html(newview.$el);
-    // var project = this.collection.get(id)
-//     var tasks = Crossedout.tasks.where({project_id: id})
-//     var renderedContent = JST["projects/show"]({  
-//       project: this.collection.get(id),
-//       tasks: Crossedout.tasks.where({project_id: id}),
-//     });
-//     $(".center-pane").html(renderedContent);
-//     return this;
   },
   
   showTaskDetail: function (event) {
     event.preventDefault();
-    console.log("showTaskDetail")
   },
 });

@@ -1,9 +1,13 @@
 Crossedout.Views.ProjectShowView = Backbone.View.extend({
+  initialize: function () {
+    this.listenTo(Crossedout.tasks, "remove add reset taskChange", this.render);	
+  },
+  
   template: JST["projects/show"],
   
   events: {
     "click .task-show-link": "showTaskDetail",
-    "keypress input[type=text]": "enterTaskInfo"
+    "keyup input": "enterProjectOrTaskInfo",
   },
   
   render: function () {
@@ -22,22 +26,29 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
     $(".right-pane").html(taskDetailView.render().$el);
   },
   
-  enterTaskInfo: function (event) {
-    if (event.keyCode !== 13) {
-      return;
+  enterProjectOrTaskInfo: function (event) {
+    if (event.keyCode == 13) { 
+        debugger 
+      if (event.currentTarget.parentElement.className == "task-show-link") {
+        var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
+        task.set("title", $(event.currentTarget).val())
+        task.save({}, {success: function () {
+        }})
+      } 
+      this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+      this.model.save({})
     }
-    console.log($(event.currentTarget).attr("class"))
-    console.log($(event.currentTarget).val())
+    else {
+      if (event.currentTarget.parentElement.className == "task-show-link") {
+        var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
+        task.set("title", $(event.currentTarget).val())
+        Crossedout.tasks.trigger("projectChange");
+      }
+      else {
+        this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+      }
+    }
     
-    this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
-    this.model.save({}, {
-      success: function () { alert("Success!")}
-    }, 
-    {
-      error: function () { alert("No success!") }
-    })
-    // console.log($(event.currentTarget).attr("class"))
-    // console.log($(event.currentTarget).val())    
   },
     
 });

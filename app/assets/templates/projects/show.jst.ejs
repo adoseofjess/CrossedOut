@@ -5,6 +5,6 @@ Description: <input class="description" type="text" value="<%= project.get('desc
 Tasks: <% _.each(tasks, function(task) { %>
   <!-- <div class="task-show-link" data-id="<%= task.id %>"><a href="/tasks/<%= task.id %>"><%= task.get('title') %></a></div> -->
   
-  <div class="task-show-link" data-id="<%= task.id %>"><input type="text" value="<%= task.get('title') %>"></input></div>
+  <div class="task-show-link" data-id="<%= task.id %>"><input data-id="<%= task.id %>" type="text" value="<%= task.get('title') %>"></input></div>
   
   <% }); %>

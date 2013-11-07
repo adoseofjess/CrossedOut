@@ -14,12 +14,8 @@ class TasksController < ApplicationController
   
   def update
     @task = Task.find(params[:id])
- 
-    if @task.update_attributes(params[:task])
-      redirect_to user_url(@task.user_id)
-    else
-      render :json => @task.errors.full_messages
-    end
+    @task.update_attributes(params[:task])
+    render :json => @task
   end
   
   def create
