@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     if @project.save
-      redirect_to project_url(@project.id)
+      render :json => @project
     else
       render :json => @project.errors.full_messages
     end
@@ -31,5 +31,12 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
+    @project = Project.find(params[:id])
+    if @project.destroy
+      render :json => @project
+    else
+      render :json => @project.errors.full_messages, :status => 422
+    end
+    
   end
 end

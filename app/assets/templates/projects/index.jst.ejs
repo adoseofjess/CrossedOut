@@ -1,6 +1,7 @@
 <% projects.each(function(project) { %>
 <br>
 <div class="project-index-link" data-id="<%= project.id %>"><a href="/projects/<%=project.id%>" ><%= project.get('title') %></a>: <%= project.get('description') %></div>
+<button class="delete-project-button" data-id="<%= project.id %>">Delete</button>
 <br>
 <% }); %>
-<a href="/projects/new">Create New Project</a>
+<a href="/projects/new" class="project-new-link">Create New Project</a>

@@ -28,6 +28,7 @@ window.Crossedout = {
   },
   
   sidebar: function() {
+    console.log("Sidebar")
     var indexView = new Crossedout.Views.ProjectIndexView({
 		  collection: Crossedout.projects
 	  });

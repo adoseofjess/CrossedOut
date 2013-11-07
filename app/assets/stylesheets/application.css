@@ -18,6 +18,7 @@
   width: 25%;
   height: 100%;
   position: fixed;
+  overflow: auto;
 }
 
 .center-pane {

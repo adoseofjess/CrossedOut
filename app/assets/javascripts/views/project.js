@@ -1,7 +1,6 @@
 Crossedout.Views.ProjectShowView = Backbone.View.extend({
   initialize: function () {
-    this.listenTo(Crossedout.tasks, "remove add reset taskChange", this.render);
-    
+    this.listenTo(Crossedout.tasks, "remove add reset taskChange", this.render);    
   },
   
   template: JST["projects/show"],
@@ -33,7 +32,6 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         var that = this;
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
         task.set("title", $(event.currentTarget).val())
-        debugger
         task.save({}, {success: function () {
         }})
       } 
