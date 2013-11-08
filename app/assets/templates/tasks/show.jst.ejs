@@ -1,5 +1,17 @@
 <h1>Task</h1>
+<% if (task) { %> 
+
+<div class="task" data-id="<%= task.get('id') %>">
 Title: <input class="title" type="text" value="<%= task.get('title') %>"></input>
 <br>
 Description: <input class="description" type="text" value="<%= task.get('description') %>"></input>
 <br>
+  <% if (task.get("completed")) { %>
+    <input class="completed" type="checkbox" checked>Completed?</input>
+    </div>
+  <% } else { %>
+    <input class="completed" type="checkbox">Completed?</input>
+    </div>
+  <% } %>
+
+<% }; %>

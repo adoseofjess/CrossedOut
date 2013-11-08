@@ -8,6 +8,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   
   events: {
   "keyup input": "enterTaskInfo",
+  "click .completed": "checkTaskOff",
   },
   
   render: function () {
@@ -42,5 +43,23 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
     this.model = Crossedout.tasks.get(taskId)
     this.render();
   },
+  
+  checkTaskOff: function (event) {
+    var taskId = parseInt($(event.currentTarget).parent().attr("data-id"))
+    var task = Crossedout.tasks.get(taskId)
+    
+    if (task.get("completed")) {
+      task.set("completed", true);
+      task.save({});
+      console.log("It wasn't completed but now is")
+    }
+    else {
+      task.set("completed", false)
+      task.save({});
+      console.log("It was completed but now isn't")
+      
+    }
+    
+  }
     
 });
