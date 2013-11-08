@@ -12,35 +12,53 @@
  *= require_tree .
  */
 
-body {
-  background-color: #F0F8FF;
+html, body {
+  font-family: "Times New Roman", sans-serif;
+  font-size: 1.1em;
+  background-color: #1d6a47;
+  color: black;
+/*  font-weight: 200;*/
+}
+
+input {
+  font-family: "Times New Roman", sans-serif;
+}
+
+.sidebar, .center-pane, .right-pane {
+  padding: 20px;
 }
 
 .sidebar {
-  border-style: solid;
+  border-style: 1px solid white;
   float: left;
   width: 25%;
   height: 100%;
   position: fixed;
   overflow: scroll;
+  background: pink;
+  border-radius: 25px;
 }
 
 .center-pane {
   position: fixed;
   margin-left: 35%;
-  border-style: solid;
+  border-style: 1px solid white;
   width: 25%;
   height: 100%;
   overflow: scroll;
+  background: pink;
+  border-radius: 25px;
 }
 
 .right-pane {
   position: fixed;
   margin-left: 70%;
-  border-style: solid;
+  border-style: 1px solid white;
   width: 25%;
   height: 100%;
   overflow: scroll;
+  background: pink;
+  border-radius: 25px;
 }
 
 input[type=text] {
@@ -52,4 +70,16 @@ input[type=text] {
 
 .add-new-task {
   color: grey;
+}
+
+.task-show {
+  display: inline-block;
+}
+
+.task-index {
+  display: inline-block;
+}
+
+.task-show-link {
+  display: inline-block;
 }

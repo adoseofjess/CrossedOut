@@ -12,6 +12,7 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   },
   
   render: function () {
+    console.log("rerendering")
     var renderedContent = this.template({
       project: this.model,
       tasks: Crossedout.tasks.where({project_id: this.model.id})
@@ -29,15 +30,34 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   
   enterProjectOrTaskInfo: function (event) {
     if (event.keyCode == 8) {
-      
       if (event.currentTarget.value.length == 0) {
+        
         //if input field is not populated and is a task, delete
         if (event.currentTarget.parentElement.className == "task-show-link") {
+          // $("input").removeClass("focus");
+//           $(event.currentTarget).parent().parent().prev().children().find("input").addClass("focus");
+          
           var input = Crossedout.tasks.get(parseInt(event.currentTarget.getAttribute("data-id")))
-          input.destroy({success: function () {
+          input.destroy({
+            wait: true,
+            success: function () {
+            // console.log($(event.currentTarget).parent().parent().prev().children().find("input").val())
+            
+            //this is not working
+            
+            
+            
+            // $(event.currentTarget).parent().parent().prev().children().find("input").focus()
             
             $(".right-pane").html();
           }});
+          
+          // $(".focus").focus();
+          
+          // $(event.currentTarget).parent().parent().prev().children().find("input").focus()
+          
+          // fix this part so when i backspace and delete, it focuses on the previous input element
+          
         }
       //if input field is not populated and is not a task, don't do anything
       } 
@@ -54,25 +74,31 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         }        
       }     
     }
-    
     else if (event.keyCode == 13) { 
       if (event.currentTarget.parentElement.className == "task-show-link") {
         var that = this;
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
         task.set("title", $(event.currentTarget).val())
         task.save({}, {success: function () {
-          
+          if ($(".task-show-link").last().get(0) == $(event.currentTarget).parent().get(0)) {
+            Crossedout.tasks.create({project_id: that.model.id}, {
+              wait: true,
+              success: function () {
+                $('.task-input').last().focus();
+              }
+            });
+            //this is also not working
+            
+          }
+          else {
+            $(event.currentTarget).parent().parent().next().children().find("input").focus()
+          }
         }})
-        if (event.currentTarget.parentElement.nextElementSibling.className != "task-show-link") {
-          Crossedout.tasks.create({project_id: this.model.id}, {wait: true});
-        }
       } 
       else {
         this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
         this.model.save({})
       }
-      
-      
     }
     else {
       if (event.currentTarget.parentElement.className == "task-show-link") {
@@ -102,5 +128,3 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   },
    
 });
-
-// original: "<div class="task-show-link" data-id="<%= (Crossedout.tasks.length + 1) %>"><input data-id="<%= (Crossedout.tasks.length + 1) %>" type="text"></input></div>"

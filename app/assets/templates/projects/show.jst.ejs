@@ -5,12 +5,16 @@
 </div>
 <br><br>
 <div class="tasks">
-Tasks: 
+Tasks: <br>
 <% _.each(tasks, function(task, index) { %>
   <!-- <div class="task-show-link" data-id="<%= task.id %>"><a href="/tasks/<%= task.id %>"><%= task.get('title') %></a></div> -->
-  
-  <%=index + 1%>.<div class="task-show-link" data-id="<%= task.id %>"><input data-id="<%= task.id %>" type="text" value="<%= task.get('title') %>"></input></div>
+  <div class='task-show'>
+  <div class="task-index"><%=index + 1%>.</div><div class="task-show-link" data-id="<%= task.id %>"><input class="task-input" data-id="<%= task.id %>" type="text" value="<%= task.get('title') %>"></input></div>
+</div>
   
   <% }); %>
 <div class="add-new-task">Add New Task</div>
 </div>
+
+
+
