@@ -28,17 +28,45 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   },
   
   enterProjectOrTaskInfo: function (event) {
-    if (event.keyCode == 13) { 
+    if (event.keyCode == 8) {
+      
+      if (event.currentTarget.value.length == 0) {
+        //if input field is not populated and is a task, delete
+        if (event.currentTarget.parentElement.className == "task-show-link") {
+          var input = Crossedout.tasks.get(parseInt(event.currentTarget.getAttribute("data-id")))
+          input.destroy({success: function () {
+            console.log("delted")
+          }});
+        }
+      //if input field is not populated and is not a task, don't do anything
+      } 
+      else {
+        //if input field is populated and is a task, just update
+        if (event.currentTarget.parentElement.className == "task-show-link") {
+          var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
+          task.set("title", $(event.currentTarget).val())
+          Crossedout.tasks.trigger("projectChange");
+        }
+        //if input field is populated and is not a task, just update
+        else {
+          this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+        }        
+      }     
+    }
+    
+    else if (event.keyCode == 13) { 
       if (event.currentTarget.parentElement.className == "task-show-link") {
-        console.log("enter")
         var that = this;
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
         task.set("title", $(event.currentTarget).val())
         task.save({}, {success: function () {
+          
         }})
       } 
-      this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
-      this.model.save({})
+      else {
+        this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+        this.model.save({})
+      }
     }
     else {
       if (event.currentTarget.parentElement.className == "task-show-link") {

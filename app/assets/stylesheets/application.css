@@ -22,16 +22,16 @@ body {
   width: 25%;
   height: 100%;
   position: fixed;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .center-pane {
-/*  float: right;  */
   position: fixed;
   margin-left: 35%;
   border-style: solid;
   width: 25%;
   height: 100%;
+  overflow: scroll;
 }
 
 .right-pane {
@@ -40,11 +40,14 @@ body {
   border-style: solid;
   width: 25%;
   height: 100%;
+  overflow: scroll;
 }
 
 input[type=text] {
   border: 0;
-  background-color: transparent;
+  background-color: pink;
+  font-family:"Times New Roman";
+  font-size: 20px;
 }
 
 .add-new-task {
