@@ -17,6 +17,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
       task: this.model,
     });
     this.$el.html(renderedContent);
+    this.getDatePicker();
     // this.$el.prepend($('.date-pick').datePicker({clickInput:true}))
     return this;
   },
@@ -24,12 +25,16 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   enterTaskInfo: function (event) {
     if (event.keyCode !== 13) {
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+      this.model.set("due_date", $(".datepicker").datepicker( "getDate" ))
+      console.log($(".datepicker").datepicker( "getDate" ))
       Crossedout.tasks.trigger("taskChange");
     }
     else {
       event.preventDefault();
-    
+      
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
+      this.model.set("due_date", $(".datepicker").datepicker( "getDate" ))
+      console.log($(".datepicker").datepicker( "getDate" ))
       this.model.save({})
     }
     
@@ -66,5 +71,9 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
         }
       });
     }
+  },
+  
+  getDatePicker: function () {
+      this.$el.find('.datepicker').datepicker();
   }
 });
