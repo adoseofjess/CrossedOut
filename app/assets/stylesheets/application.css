@@ -13,15 +13,18 @@
  */
 
 html, body {
-  font-family: "Times New Roman", sans-serif;
+/*  font-family: "Times New Roman", sans-serif;*/
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.1em;
-  background-color: #1d6a47;
+/*  background-color: #1d6a47;*/
+  background-color: white;
   color: black;
 /*  font-weight: 200;*/
 }
 
 input {
-  font-family: "Times New Roman", sans-serif;
+/*  font-family: "Times New Roman", sans-serif;*/
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .sidebar, .center-pane, .right-pane {
@@ -35,7 +38,7 @@ input {
   height: 100%;
   position: fixed;
   overflow: scroll;
-  background: pink;
+  background: navajowhite;
   border-radius: 25px;
 }
 
@@ -57,14 +60,14 @@ input {
   width: 25%;
   height: 100%;
   overflow: scroll;
-  background: pink;
+  background: lavender;
   border-radius: 25px;
 }
 
 input[type=text] {
   border: 0;
-  background-color: pink;
-  font-family:"Times New Roman";
+  background-color: navajowhite;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 20px;
 }
 
