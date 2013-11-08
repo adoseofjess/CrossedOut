@@ -39,7 +39,6 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
           input.destroy({
             wait: true,
             success: function () {
-            // console.log($(event.currentTarget).parent().parent().prev().children().find("input").val())
 
             //testing
             Crossedout.tasks.trigger("projectShift", $('.task-input').last().attr('data-id'));
@@ -111,6 +110,12 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         this.model.save({})
       }
     }
+    
+    else if (event.keyCode == 9) {
+      console.log("Tabbing")
+      Crossedout.tasks.trigger("projectShift", $(event.currentTarget).attr("data-id"));
+    }
+    
     else {
       if (event.currentTarget.parentElement.className == "task-show-link") {
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
