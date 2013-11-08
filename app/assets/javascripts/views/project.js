@@ -12,7 +12,6 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   },
   
   render: function () {
-    console.log("rerendering")
     var renderedContent = this.template({
       project: this.model,
       tasks: Crossedout.tasks.where({project_id: this.model.id})
@@ -34,27 +33,22 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         
         //if input field is not populated and is a task, delete
         if (event.currentTarget.parentElement.className == "task-show-link") {
-          // $("input").removeClass("focus");
-//           $(event.currentTarget).parent().parent().prev().children().find("input").addClass("focus");
+
           
           var input = Crossedout.tasks.get(parseInt(event.currentTarget.getAttribute("data-id")))
           input.destroy({
             wait: true,
             success: function () {
             // console.log($(event.currentTarget).parent().parent().prev().children().find("input").val())
-            
-            //this is not working
-            
-            
+
+            //testing
+            Crossedout.tasks.trigger("projectShift", $('.task-input').last().attr('data-id'));
             
             // $(event.currentTarget).parent().parent().prev().children().find("input").focus()
             
             $(".right-pane").html();
           }});
           
-          // $(".focus").focus();
-          
-          // $(event.currentTarget).parent().parent().prev().children().find("input").focus()
           
           // fix this part so when i backspace and delete, it focuses on the previous input element
           
@@ -75,26 +69,43 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
       }     
     }
     else if (event.keyCode == 13) { 
+      
+      //this is a task detail input
       if (event.currentTarget.parentElement.className == "task-show-link") {
         var that = this;
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
         task.set("title", $(event.currentTarget).val())
+        
+        //save the task
         task.save({}, {success: function () {
+          
+          //if it's the last task, then create a new task
           if ($(".task-show-link").last().get(0) == $(event.currentTarget).parent().get(0)) {
+            console.log("in last task creating new task")
             Crossedout.tasks.create({project_id: that.model.id}, {
               wait: true,
               success: function () {
+                
                 $('.task-input').last().focus();
+                Crossedout.tasks.trigger("projectShift", $('.task-input').last().attr('data-id'));
+                
               }
             });
             //this is also not working
             
           }
+          //if it's not the last task, then move onto the next task
           else {
             $(event.currentTarget).parent().parent().next().children().find("input").focus()
+            
+            //rerender the right-pane here
+            // debugger
+            Crossedout.tasks.trigger("projectShift", $(event.currentTarget).parent().parent().next().find("input").attr("data-id"));
           }
         }})
       } 
+      
+      //this is not a task detail input
       else {
         this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
         this.model.save({})

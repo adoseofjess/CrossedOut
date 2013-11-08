@@ -1,6 +1,7 @@
 Crossedout.Views.TaskShowView = Backbone.View.extend({
   initialize: function () {
     this.listenTo(Crossedout.tasks, "remove add reset projectChange", this.render);	
+    this.listenTo(Crossedout.tasks, "projectShift", this.renderNew);
   },
   
   template: JST["tasks/show"],
@@ -10,6 +11,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   },
   
   render: function () {
+    console.log("right-pane rerendering")
     var renderedContent = this.template({
       task: this.model,
     });
@@ -34,6 +36,11 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
       })
     }
     
+  },
+  
+  renderNew: function (taskId) {
+    this.model = Crossedout.tasks.get(taskId)
+    this.render();
   },
     
 });
