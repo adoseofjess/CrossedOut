@@ -1,10 +1,16 @@
-Title: <input class="title" type="text" value="<%= project.get('title') %>"></input>
+<h1>Project Detail</h1>
+<div class="project-info"><div class="title">Title: <input class="title" type="text" value="<%= project.get('title') %>"></input></div>
 <br>
-Description: <input class="description" type="text" value="<%= project.get('description') %>"></input>
+<div class="description">Description: <input class="description" type="text" value="<%= project.get('description') %>"></input><div>
+</div>
 <br><br>
-Tasks: <% _.each(tasks, function(task, index) { %>
+<div class="tasks">
+Tasks: 
+<% _.each(tasks, function(task, index) { %>
   <!-- <div class="task-show-link" data-id="<%= task.id %>"><a href="/tasks/<%= task.id %>"><%= task.get('title') %></a></div> -->
   
   <%=index + 1%>.<div class="task-show-link" data-id="<%= task.id %>"><input data-id="<%= task.id %>" type="text" value="<%= task.get('title') %>"></input></div>
   
   <% }); %>
+<div class="add-new-task">Add New Task</div>
+</div>

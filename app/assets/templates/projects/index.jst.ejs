@@ -1,3 +1,4 @@
+<h1>Projects</h1>
 <% projects.each(function(project) { %>
 <br>
 <div class="project-index-link" data-id="<%= project.id %>"><a href="/projects/<%=project.id%>" ><%= project.get('title') %></a>: <%= project.get('description') %></div>

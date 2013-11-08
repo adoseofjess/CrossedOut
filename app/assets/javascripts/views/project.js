@@ -8,6 +8,7 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   events: {
     "click .task-show-link": "showTaskDetail",
     "keyup input": "enterProjectOrTaskInfo",
+    "click .add-new-task": "createNewInput",
   },
   
   render: function () {
@@ -29,6 +30,7 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   enterProjectOrTaskInfo: function (event) {
     if (event.keyCode == 13) { 
       if (event.currentTarget.parentElement.className == "task-show-link") {
+        console.log("enter")
         var that = this;
         var task = Crossedout.tasks.get(parseInt(event.currentTarget.parentElement.getAttribute("data-id")))
         task.set("title", $(event.currentTarget).val())
@@ -48,11 +50,21 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
       }
     }
-    
   },
   
-  newblank: function () {
-    alert("New blank!")
-  },
+  createNewInput: function () {
+    console.log("hi")
+    Crossedout.tasks.create({project_id: this.model.id}, {wait: true});
+    // var newTask = new Crossedout.Models.Task();
+    // 
+    // Crossedout.tasks.add([newTask]);
+    // $(".center-pane").append("<div class='task-show-link' data-id='" + newTask.cid + "'><input data-id='" + newTask.cid + "' type='text'></input></div>");
+    //come back here
     
+    
+    // <div class='task-show-link' data-id='<%=newTask.escape('cid')%>'><input data-id='<%=newTask.escape('cid')%>' type='text'></input></div>
+  },
+   
 });
+
+// original: "<div class="task-show-link" data-id="<%= (Crossedout.tasks.length + 1) %>"><input data-id="<%= (Crossedout.tasks.length + 1) %>" type="text"></input></div>"
