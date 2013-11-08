@@ -1,5 +1,9 @@
 <h1>Task</h1>
+// <script>
+// $('.date-pick').datePicker({clickInput:true})
+// </script>
 <% if (task) { %> 
+<input type="datetime" name="somedatafield" value="<%= task.get('due_date') %>" />
 
 <div class="task" data-id="<%= task.get('id') %>">
 Title: <input class="title" type="text" value="<%= task.get('title') %>"></input>

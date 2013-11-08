@@ -17,6 +17,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
       task: this.model,
     });
     this.$el.html(renderedContent);
+    // this.$el.prepend($('.date-pick').datePicker({clickInput:true}))
     return this;
   },
   
