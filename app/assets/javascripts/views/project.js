@@ -35,7 +35,8 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         if (event.currentTarget.parentElement.className == "task-show-link") {
           var input = Crossedout.tasks.get(parseInt(event.currentTarget.getAttribute("data-id")))
           input.destroy({success: function () {
-            console.log("delted")
+            
+            $(".right-pane").html();
           }});
         }
       //if input field is not populated and is not a task, don't do anything
@@ -62,11 +63,16 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
         task.save({}, {success: function () {
           
         }})
+        if (event.currentTarget.parentElement.nextElementSibling.className != "task-show-link") {
+          Crossedout.tasks.create({project_id: this.model.id}, {wait: true});
+        }
       } 
       else {
         this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
         this.model.save({})
       }
+      
+      
     }
     else {
       if (event.currentTarget.parentElement.className == "task-show-link") {
@@ -79,6 +85,8 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
       }
     }
   },
+  
+  
   
   createNewInput: function () {
     console.log("hi")
