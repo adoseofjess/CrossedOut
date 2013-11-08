@@ -8,10 +8,12 @@ Description: <input class="description" type="text" value="<%= task.get('descrip
 <br>
   <% if (task.get("completed")) { %>
     <input class="completed" type="checkbox" checked>Completed?</input>
-    </div>
+    Task completed at <%= task.get("completed_at") %>
   <% } else { %>
     <input class="completed" type="checkbox">Completed?</input>
-    </div>
+    
   <% } %>
+   
 
 <% }; %>
+</div>

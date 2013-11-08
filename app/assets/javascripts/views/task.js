@@ -29,12 +29,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
       event.preventDefault();
     
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
-      this.model.save({}, {
-        success: function () { alert("Success!")}
-      }, 
-      {
-        error: function () { alert("No success!") }
-      })
+      this.model.save({})
     }
     
   },
@@ -49,17 +44,26 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
     var task = Crossedout.tasks.get(taskId)
     
     if (task.get("completed")) {
-      task.set("completed", true);
-      task.save({});
-      console.log("It wasn't completed but now is")
+      task.set({
+        "completed": false,
+        "completed_at": null, 
+      })
+      task.save({}, {
+        success: function () {
+          Crossedout.tasks.trigger("projectChange");
+        }
+      });
     }
     else {
-      task.set("completed", false)
-      task.save({});
-      console.log("It was completed but now isn't")
-      
+      task.set({
+        "completed": true,
+        "completed_at": new Date().toDateString(), 
+      })
+      task.save({}, {
+        success: function () {
+          Crossedout.tasks.trigger("projectChange");
+        }
+      });
     }
-    
   }
-    
 });
