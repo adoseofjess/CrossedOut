@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :title, :description, :user_id
+  attr_accessible :title, :description, :projectable_id, :projectable_type
   
+  belongs_to :projectable, polymorphic: true
   has_many :tasks
-  belongs_to :user
   
 end

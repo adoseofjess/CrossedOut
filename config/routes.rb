@@ -1,6 +1,8 @@
 Crossedout::Application.routes.draw do
-  resources :users, :only => [:index, :create, :new, :show]
-
+  resources :users, :only => [:index, :create, :new, :show] 
+  
+  resources :teams 
+    
   resource :session, :only => [:create, :destroy, :new]
   
   resources :tasks, :only => [:index, :new, :create, :edit, :show, :update, :destroy]

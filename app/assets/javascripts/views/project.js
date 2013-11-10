@@ -131,7 +131,6 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   
   
   createNewInput: function () {
-    console.log("hi")
     Crossedout.tasks.create({project_id: this.model.id}, {wait: true});
     // var newTask = new Crossedout.Models.Task();
     // 
@@ -142,5 +141,6 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
     
     // <div class='task-show-link' data-id='<%=newTask.escape('cid')%>'><input data-id='<%=newTask.escape('cid')%>' type='text'></input></div>
   },
+  
    
 });

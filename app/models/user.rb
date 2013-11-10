@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password
+  attr_accessible :username, :password, :team_id
   attr_reader :password
   
+  has_many :user_team_joins
+  has_many :teams, through: :user_team_joins
+
+  has_many :projects, as: :projectable
   has_many :tasks
-  has_many :projects
   
   validates :password_digest, :presence => { :message => "Password can't be blank" }
   validates :password, :length => { :minimum => 6, :allow_nil => true }

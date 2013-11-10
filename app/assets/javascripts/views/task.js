@@ -26,7 +26,6 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
     if (event.keyCode !== 13) {
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
       this.model.set("due_date", $(".datepicker").datepicker( "getDate" ))
-      console.log($(".datepicker").datepicker( "getDate" ))
       Crossedout.tasks.trigger("taskChange");
     }
     else {
@@ -34,10 +33,9 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
       
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
       this.model.set("due_date", $(".datepicker").datepicker( "getDate" ))
-      console.log($(".datepicker").datepicker( "getDate" ))
       this.model.save({})
     }
-    
+  
   },
   
   renderNew: function (taskId) {

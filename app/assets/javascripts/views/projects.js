@@ -9,6 +9,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     "click .project-index-link": "showProjectDetail",
     "click .project-new-link": "showProjectNew",
     "click .delete-project-button": "deleteProject",
+    "click .new-team-link": "createNewTeam",
   },
   
   render: function () {
@@ -41,7 +42,12 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     project.destroy({success: function(model, response) {
       console.log("Deleted")
     }})
+  },
+  
+  createNewTeam: function (event) {
+    event.preventDefault();
     
-    
+    var newTeamForm = new Crossedout.Views.TeamNewView();
+    $(".sidebar").prepend(newTeamForm.render().$el)
   },
 });
