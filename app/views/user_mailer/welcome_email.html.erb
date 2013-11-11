@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @team %> is getting organized on CrossedOut</h1>
+    <h1><%= @team.title %> is getting organized on CrossedOut</h1>
     <p>
       Join and the rest of your team by clicking below.<br/>
     </p>
     <p>
-      <a href="<%= @url %>">Join CrossedOut</a>
+      <a href="<%= @url %>">Join <%= @team.title %> on Crossedout</a>
     </p>
     <p>You're getting this email because a teammate of yours invited this email address to join their workspace on CrossedOut. If this was an error, talk to your teammate or email support@crossedout.com.
 </p>

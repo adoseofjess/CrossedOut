@@ -51,15 +51,14 @@ class TeamsController < ApplicationController
   end
   
   def add_member
-
-    @email = params[:email]
-    p "HIIIIIIII"
-    p @email
-    render :json => @email
-    # @team = params[:team_id]
-    # render :json => @email, @team
-    # @url = new_user_url
-#     msg = UserMailer.welcome_email(@email, @team)
-#     msg.deliver!
+    p params[:email]
+    p params[:team_id]
+    
+    @email = params[:email] + "." + params[:format]
+    @team = Team.find(params[:team_id])
+    @url = new_user_url
+    msg = UserMailer.welcome_email(@email, @team, @url)
+    p msg
+    msg.deliver
   end
 end
