@@ -7,4 +7,8 @@ class Team < ActiveRecord::Base
 
   has_many :projects, as: :projectable
   
+  def as_json(options={})
+    super(:include => [:users])
+  end
+  
 end

@@ -6,7 +6,6 @@ Crossedout.Views.TeamNewView = Backbone.View.extend({
 	},
   
   render: function () {
-    console.log("new team form rendering")
     var renderedContent = this.template()
     this.$el.html(renderedContent);
     return this;
@@ -14,15 +13,21 @@ Crossedout.Views.TeamNewView = Backbone.View.extend({
   
   createTeam: function (event) {
     event.preventDefault();
-        
+
     var formData = $(event.currentTarget).serializeJSON();
-		var newTeam = Crossedout.teams.create(formData.project, 
-			{
+
+    var newTeam = Crossedout.teams.create(formData.team, 
+      {
         wait: true,
         success: function () {
-          	
+          
+          $(".sidebar").prepend(new Crossedout.Views.AddMemberView(newTeam).render().$el)
+          $(".sidebar").prepend(new Crossedout.Views.TeamShowView(newTeam).render().$el)
+          console.log("Team created")  
       }
     })
+    
+    
   },
   
 });

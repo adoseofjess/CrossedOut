@@ -1,0 +1,4 @@
+<h1><%= team.get("title") %></h1>
+<% team.get("users").each(function(user) { %>
+<%= user.get("username") %>
+<% }) %>

@@ -19,12 +19,20 @@ class TeamsController < ApplicationController
   end
   
   def create
+    # @members_params = params[:team].delete(:members) || []
+ #    p params
+ #    p params[:members]
+ #    p params[:team]
+ #    p "HELLO"
     @team = Team.new(params[:team])
-    
+    # @member_params.each { |mp| @team.users.build(mp) }
+   #  
+   #  p params[:user_id]
     if @team.save
-      render :json => @team
+      # @team.users<<(User.find(params[:user_id]))
+      render :json => @team, :include => :users
     else
-      render :json => @team.errors, :status => 422
+      render :json => @team.errors.full_messages, :status => 422
     end
   end
   
@@ -40,5 +48,18 @@ class TeamsController < ApplicationController
     else
       render :json => @team.errors.full_messages, :status => 422
     end
+  end
+  
+  def add_member
+
+    @email = params[:email]
+    p "HIIIIIIII"
+    p @email
+    render :json => @email
+    # @team = params[:team_id]
+    # render :json => @email, @team
+    # @url = new_user_url
+#     msg = UserMailer.welcome_email(@email, @team)
+#     msg.deliver!
   end
 end

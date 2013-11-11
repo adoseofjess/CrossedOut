@@ -1,0 +1,2 @@
+module UserTeamJoinsHelper
+end

@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     self.save!
   end
   
+  def as_json(options={})
+    super(:include => [:teams])
+  end
+  
   private
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token

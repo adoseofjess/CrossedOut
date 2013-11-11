@@ -1,0 +1,5 @@
+<%=current_user.get("username")%>
+<br><h1>Teams</h1>
+<% _.each( current_user.get("teams"), function(team) { %>
+  <%= team.title %><br>
+<% }); %>
