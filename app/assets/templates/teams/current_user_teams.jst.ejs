@@ -1,5 +1,4 @@
-<%=current_user.get("username")%>
-<br><h1>Teams</h1>
+<h1><%= current_user.get("username")%>'s Teams</h1>
 <% _.each( current_user.get("teams"), function(team) { %>
-  <%= team.title %><br>
+  <div class="team-show-link" data-id="<%= team.id %>"><a href=""><%= team.title %><a></div><br>
 <% }); %>
