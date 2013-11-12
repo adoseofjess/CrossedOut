@@ -42,7 +42,18 @@ class User < ActiveRecord::Base
   end
   
   def as_json(options={})
-    super(:include => [:teams])
+    options.merge!(
+      :include => {
+        :tasks => {},
+        :teams => {
+          :include => {
+            :projects => { :include => :tasks },
+            :users => { :only => [:username, :id] }
+          }
+        }
+      }
+    )
+    super(options)
   end
   
   private

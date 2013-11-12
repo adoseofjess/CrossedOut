@@ -60,5 +60,6 @@ class TeamsController < ApplicationController
     msg = UserMailer.welcome_email(@email, @team, @url)
     p msg
     msg.deliver
+    render :json => "Hi"
   end
 end
