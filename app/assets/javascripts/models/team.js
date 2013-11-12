@@ -21,11 +21,11 @@ Crossedout.Models.Team = Backbone.Model.extend({
   parse: function (serverAttributes, options) {
     
     //turn team members into user collection
-    this.members().reset(serverAttributes.users);
+    this.members().reset(serverAttributes.members);
     //turn team tasks into collection
-    this.projects().reset(serverAttributes.projects);    
+    this.projects().reset(serverAttributes.projects, { parse: true });    
 
-    delete serverAttributes.users;
+    delete serverAttributes.members;
     delete serverAttributes.projects;
     return serverAttributes;
   },

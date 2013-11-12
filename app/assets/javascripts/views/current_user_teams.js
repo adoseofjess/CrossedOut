@@ -1,9 +1,8 @@
-Crossedout.Views.CurrentUserTeamsShow = Backbone.View.extend({
-  initialize: function (current_user, collection) {
-    this.current_user = current_user;
-    this.collection = collection;
+Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
+  initialize: function (options) {
+    this.collection = options.collection;
     // console.log(current_user.get('teams'))
-    // this.listenTo(this.collection, "remove add change", this.render);
+    this.listenTo(this.collection, "remove add change", this.render);
   }, 
   
   template: JST["teams/current_user_teams"],
@@ -26,7 +25,7 @@ Crossedout.Views.CurrentUserTeamsShow = Backbone.View.extend({
   showTeamDetail: function (event) {
     event.preventDefault();
     
-    var team = Crossedout.teams.get(parseInt($(event.currentTarget).attr("data-id")))
+    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
     var TeamDetailView = new Crossedout.Views.TeamShowView(team);
     $(".center-pane").html(TeamDetailView.render().$el);
   },
@@ -34,19 +33,17 @@ Crossedout.Views.CurrentUserTeamsShow = Backbone.View.extend({
   leaveTeam: function (event) {
     
     var that = this;
-    var userteamjoin = this.collection.findWhere({
-      team_id: parseInt($(event.currentTarget).attr("data-id")), 
-      user_id: this.current_user.id
-    })
-      
-    
-    userteamjoin.destroy({
+    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
+    team.members().remove(Crossedout.current_user);  
+    this.collection.remove(team);
+    $.ajax({
+      url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
+      type: "DELETE",
       success: function () {
-        console.log("destroyed");
-      }, 
-      wait: true
-    })
-    that.collection.remove(userteamjoin);
+        console.log("Deleted")
+       
+      }
+    });
   },    
   
 });

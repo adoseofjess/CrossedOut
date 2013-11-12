@@ -2,7 +2,7 @@ Crossedout::Application.routes.draw do
   resources :users, :only => [:index, :create, :new, :show] 
   
   resources :teams do
-    resources :users, :only => [:index]
+    resources :users, :only => [:index, :destroy]
     post '/:email', to: 'teams#add_member'
   end
     

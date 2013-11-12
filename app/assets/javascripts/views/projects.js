@@ -1,8 +1,9 @@
 Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   template: JST["projects/index"],
   
-  initialize: function () {
-    this.listenTo(Crossedout.projects, "remove add reset change", this.render);
+  initialize: function (options) {
+    this.collection = options.collection;
+    this.listenTo(this.collection, "remove add reset change", this.render);
   },
   
   events: {
@@ -38,7 +39,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   deleteProject: function(event) {
     event.preventDefault();
     
-    var project = Crossedout.projects.get(parseInt($(event.currentTarget).attr("data-id")))
+    var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
     project.destroy({success: function(model, response) {
       console.log("Deleted")
     }})

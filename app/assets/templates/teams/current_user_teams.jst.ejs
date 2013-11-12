@@ -1,4 +1,4 @@
-<h1><%= current_user.get("username")%>'s Teams</h1>
-<% _.each( current_user.get("teams"), function(team) { %>
-  <div class="team-show-link" data-id="<%= team.id %>"><a href=""><%= team.title %><a></div><button class="team-leave-button" data-id="<%= team.id %>">Leave team</button><br>
+<h1><%= current_user.escape("username")%>'s Teams</h1>
+<% current_user.teams().each(function(team) { %>
+  <div class="team-show-link" data-id="<%= team.id %>"><a href=""><%= team.escape("title") %><a></div><button class="team-leave-button" data-id="<%= team.id %>">Leave team</button><br>
 <% }); %>

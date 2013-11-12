@@ -15,7 +15,7 @@ Crossedout.Views.ProjectNewView = Backbone.View.extend({
     event.preventDefault();
         
     var formData = $(event.currentTarget).serializeJSON();
-		var newProject = Crossedout.projects.create(formData.project, 
+		var newProject = Crossedout.current_user.projects().create(formData.project, 
 			{
         wait: true,
         success: function () {

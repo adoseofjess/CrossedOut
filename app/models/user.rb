@@ -44,11 +44,13 @@ class User < ActiveRecord::Base
   def as_json(options={})
     options.merge!(
       :include => {
-        :tasks => {},
+        :projects => {
+          :include => :tasks
+        },
         :teams => {
           :include => {
             :projects => { :include => :tasks },
-            :users => { :only => [:username, :id] }
+            :members => { :only => [:username, :id] }
           }
         }
       }

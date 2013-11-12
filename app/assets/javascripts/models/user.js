@@ -10,16 +10,22 @@ Crossedout.Models.User = Backbone.Model.extend({
     return this._teams;
   },
   
+  projects: function() {
+    
+    if (!this._projects) {
+      this._projects = new Crossedout.Collections.Projects([], { user:this });
+    }
+    
+    return this._projects;
+  },
+  
   parse: function (serverAttributes, options) {
     
-    //turn personal tasks into collection
-    Crossedout.current_user.tasks = new Crossedout.Collections.Tasks(serverAttributes.tasks);
-    //turn teams into collection
-    Crossedout.current_user.teams = new Crossedout.Collections.Teams(serverAttributes.teams);
     
-    this.teams().reset(serverAttributes.teams);
+    this.projects().reset(serverAttributes.projects, { parse: true });
+    this.teams().reset(serverAttributes.teams, { parse: true });
     delete serverAttributes.teams;
-    
+    delete serverAttributes.projects;
     return serverAttributes;
   },
   

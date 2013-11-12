@@ -30,4 +30,16 @@ class UsersController < ApplicationController
       redirect_to user_url(current_user)
     end
   end
+  
+  def destroy
+    if params[:team_id]
+      team = Team.find(params[:team_id])
+      user = User.find(params[:id])
+      team.members.delete(user)
+      render :json => "Hi"
+    else
+      user = User.find(params[:id])
+      user.destroy!
+    end
+  end
 end
