@@ -18,6 +18,7 @@ window.Crossedout = {
     new Crossedout.Routers.CrossedOutRouter($(".three-panes"));
     Backbone.history.start();
     this.sidebar();
+    Crossedout.users.fetch();
     // Crossedout.projects.fetch({ 
     //   success: function () {
 
@@ -39,8 +40,13 @@ window.Crossedout = {
     var indexView = new Crossedout.Views.ProjectIndexView({
 		  collection: Crossedout.current_user.projects(),
 	  });
-    var newProjectView = new Crossedout.Views.TeamNewView();
-    var currentUserTeamsView = new Crossedout.Views.CurrentUserTeamsIndex({collection: Crossedout.current_user.teams()});
+    var newProjectView = new Crossedout.Views.TeamNewView({
+      collection: Crossedout.current_user.teams()
+    });
+    var currentUserTeamsView = new Crossedout.Views.CurrentUserTeamsIndex({
+      collection: Crossedout.current_user.teams()
+    });
+    
     $(".sidebar").html(indexView.render().$el);
     $(".sidebar").append(currentUserTeamsView.render().$el);
   }

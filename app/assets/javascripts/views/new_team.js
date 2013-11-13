@@ -1,11 +1,17 @@
 Crossedout.Views.TeamNewView = Backbone.View.extend({
   template: JST["teams/new"],
   
+  initialize: function(options) {
+    this.collection = options.collection;
+    this.listenTo(this.collection, "remove add change", this.render);
+  }, 
+  
 	events: {
 		"submit form": "createTeam",
 	},
   
   render: function () {
+    console.log("team new view rendering")
     var renderedContent = this.template()
     this.$el.html(renderedContent);
     return this;
@@ -13,17 +19,20 @@ Crossedout.Views.TeamNewView = Backbone.View.extend({
   
   createTeam: function (event) {
     event.preventDefault();
-
+    
     var formData = $(event.currentTarget).serializeJSON();
-
-    var newTeam = Crossedout.teams.create(formData.team, 
+    var that = this;
+    var newTeam = Crossedout.current_user.teams().create(formData.team, 
       {
         wait: true,
         success: function () {
+          that.remove();
+          //remove the newteamview
           
-          $(".sidebar").prepend(new Crossedout.Views.AddMemberView(newTeam).render().$el)
-          $(".sidebar").prepend(new Crossedout.Views.TeamShowView(newTeam).render().$el)
-          console.log("Team created")  
+          //rerender the user's teams index
+          
+          // $(".sidebar").prepend(new Crossedout.Views.AddMemberView(newTeam).render().$el)
+          // $(".sidebar").prepend(new Crossedout.Views.TeamShowView(newTeam).render().$el)
       }
     })
     

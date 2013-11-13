@@ -3,7 +3,8 @@ Crossedout::Application.routes.draw do
   
   resources :teams do
     resources :users, :only => [:index, :destroy]
-    post '/:email', to: 'teams#add_member'
+    post '/:user_id/:email', to: 'teams#add_member'
+    
   end
     
   resource :session, :only => [:create, :destroy, :new]
@@ -12,7 +13,7 @@ Crossedout::Application.routes.draw do
   
   resources :projects, :only => [:index, :new, :create, :edit, :show, :update, :destroy]
   
-  resources :user_team_joins
+  # resources :user_team_joins
 
   root :to => "static_pages#root"
 end

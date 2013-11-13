@@ -1,7 +1,8 @@
 Crossedout.Views.TaskShowView = Backbone.View.extend({
-  initialize: function () {
-    this.listenTo(Crossedout.tasks, "remove add reset projectChange", this.render);	
-    this.listenTo(Crossedout.tasks, "projectShift", this.renderNew);
+  initialize: function (options) {
+    this.model = options.model;
+    this.listenTo(this.model, "remove add reset projectChange", this.render);	
+    this.listenTo(this.model, "projectShift", this.renderNew);
   },
   
   template: JST["tasks/show"],
@@ -26,7 +27,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
     if (event.keyCode !== 13) {
       this.model.set($(event.currentTarget).attr("class"), $(event.currentTarget).val())
       this.model.set("due_date", $(".datepicker").datepicker( "getDate" ))
-      Crossedout.tasks.trigger("taskChange");
+      this.model.trigger("taskChange");
     }
     else {
       event.preventDefault();
@@ -38,8 +39,8 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   
   },
   
-  renderNew: function (taskId) {
-    this.model = Crossedout.tasks.get(taskId)
+  renderNew: function (model) {
+    this.model = model
     this.render();
   },
   

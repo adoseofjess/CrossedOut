@@ -1,14 +1,20 @@
-Add Team Members: 
+Add Team Members:
 <form>
 
-  <input type="hidden" name="userteamjoin[team_id]" value="<%=team.get('id')%>">
+  <input type="hidden" name="team_id" value="<%=team.get('id')%>">
   
-  <select name="userteamjoin[user_id]">
+  <!-- <select name="user_id">
     <option></option>
   <% Crossedout.users.each(function(user) { %>
     <option id="team_user_id" value="<%=user.get('id')%>"><%=user.get('username')%></option>
   <% }) %>
-  </select>
+  </select> -->
+  
+  
+  <% Crossedout.users.each(function(user) { %>
+  <input type="checkbox" id="team_user_id" value="<%=user.get('id')%>"><%=user.get('username')%>
+  <% }) %>
+  
   
   <!-- <label for="team_user_id">Member</label>
   <input 

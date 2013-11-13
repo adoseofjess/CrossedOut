@@ -14,7 +14,7 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   
   render: function () {
     
-    console.log("rendering")
+    console.log("current user team index rendering")
     var renderedContent = this.template({
       current_user: Crossedout.current_user
     })

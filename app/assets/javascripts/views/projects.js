@@ -22,8 +22,9 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   },
   
   showProjectDetail: function (event) {
+    console.log("show project detail event")
     event.preventDefault();
-
+    
     var id = parseInt($(event.currentTarget).attr('data-id'))    
     var projectDetailView = new Crossedout.Views.ProjectShowView({ model: this.collection.get(id) });
     $(".center-pane").html(projectDetailView.render().$el);
@@ -32,7 +33,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   showProjectNew: function(event) {
     event.preventDefault();
     
-    var projectNewView = new Crossedout.Views.ProjectNewView();
+    var projectNewView = new Crossedout.Views.ProjectNewView( { collection: Crossedout.current_user.projects()});
     $(".center-pane").html(projectNewView.render().$el);
   },
   
@@ -48,7 +49,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   createNewTeam: function (event) {
     event.preventDefault();
     
-    var newTeamForm = new Crossedout.Views.TeamNewView();
+    var newTeamForm = new Crossedout.Views.TeamNewView({ collection: Crossedout.current_user.teams() });
     $(".sidebar").prepend(newTeamForm.render().$el)
   },
 });

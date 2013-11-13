@@ -2,12 +2,17 @@
 
 <form>
     
-  <label for="team_title">Title</label>
+  <label for="team[title]">Title</label>
   <input
     id="team_title"
     name="team[title]"
     type="text">
   <br>
+  
+  <% Crossedout.users.each(function(user) { %>
+  <input type="checkbox" id="team_user_id" name="team[member_ids][]" value="<%=user.get('id')%>"><%=user.get('username')%>
+  <% }); %>
+  
   
   <!-- <label for="team_user_id">Member</label>
   <input 
