@@ -10,7 +10,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     "click .project-index-link": "showProjectDetail",
     "click .project-new-link": "showProjectNew",
     "click .delete-project-button": "deleteProject",
-    "click .new-team-link": "createNewTeam",
+    // "click .new-team-link": "createNewTeam",
   },
   
   render: function () {
@@ -46,10 +46,5 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     }})
   },
   
-  createNewTeam: function (event) {
-    event.preventDefault();
-    
-    var newTeamForm = new Crossedout.Views.TeamNewView({ collection: Crossedout.current_user.teams() });
-    $(".center-pane").html(newTeamForm.render().$el)
-  },
+  
 });
