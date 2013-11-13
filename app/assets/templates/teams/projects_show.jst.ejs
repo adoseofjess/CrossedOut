@@ -1,0 +1,7 @@
+<% projects.each(function(project) { %>
+  <div class="project-show" data-id="<%= project.id %>">
+  <a href="" class="project-show-link" data-id="<%= project.id %>"><%= project.get("title") %></a><br>
+  </div>
+  <button class="delete-team-project-button" data-id="<%= project.id %>">Delete project</button>
+  <br>
+<% }) %>

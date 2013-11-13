@@ -1,4 +1,6 @@
 <h1><%= team.get("title") %></h1>
-<% _.each((team.get("users")), function(user) { %>
-  <%= user.username %><br>
+<% members.each(function(member) { %>
+  <%= member.get("username") %><br>
 <% }) %>
+
+<a href="" class="create-new-team-project">Create New Project</a>

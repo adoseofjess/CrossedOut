@@ -1,27 +1,26 @@
-Crossedout.Views.TeamNewView = Backbone.View.extend({
-  template: JST["teams/new"],
+Crossedout.Views.NewTeamProjectView = Backbone.View.extend({
+  template: JST["projects/new_team_project"],
   
-  initialize: function(options) {
-    this.collection = options.collection;
-    this.listenTo(this.collection, "remove add change", this.render);
-  }, 
+  initialize: function (options) {
+    this.model = options.team;
+  },
   
 	events: {
-		"submit form": "createTeam",
+		"submit form": "createTeamProject",
 	},
   
   render: function () {
-    var renderedContent = this.template()
+    var renderedContent = this.template({team: this.model})
     this.$el.html(renderedContent);
     return this;
   },
   
-  createTeam: function (event) {
+  createTeamProject: function (event) {
     event.preventDefault();
-    
+  
     var formData = $(event.currentTarget).serializeJSON();
     var that = this;
-    var newTeam = Crossedout.current_user.teams().create(formData.team, 
+    var newTeamProject = this.model.projects().create(formData.project, 
       {
         wait: true,
         success: function () {
@@ -36,6 +35,8 @@ Crossedout.Views.TeamNewView = Backbone.View.extend({
     })
     
     
+    
+    console.log("submitting team project")
   },
   
 });

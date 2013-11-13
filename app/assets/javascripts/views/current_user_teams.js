@@ -1,8 +1,12 @@
 Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   initialize: function (options) {
-    this.collection = options.collection;
+    this.collection = options.teams;
     // console.log(current_user.get('teams'))
     this.listenTo(this.collection, "remove add change", this.render);
+    
+    //listen to the projects that belong to the teams
+    // *fix this*
+    this.listenTo(Crossedout.current_user.projects(), "remove add change", this.render)
   }, 
   
   template: JST["teams/current_user_teams"],
@@ -10,11 +14,10 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
 	events: {
     "click .team-show-link": "showTeamDetail",
     "click button": "leaveTeam",
+    "click .team-project-link": "showProjectDetail",
 	},
   
   render: function () {
-    
-    console.log("current user team index rendering")
     var renderedContent = this.template({
       current_user: Crossedout.current_user
     })
@@ -26,8 +29,12 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     event.preventDefault();
     
     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
-    var TeamDetailView = new Crossedout.Views.TeamShowView(team);
+    var TeamDetailView = new Crossedout.Views.TeamShowView({team: team});
+    
+    var TeamProjects = new Crossedout.Views.TeamProjectsShowView({projects: team.projects()});
+    
     $(".center-pane").html(TeamDetailView.render().$el);
+    $(".center-pane").append(TeamProjects.render().$el);
   },
   
   leaveTeam: function (event) {
@@ -39,11 +46,17 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     $.ajax({
       url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
       type: "DELETE",
-      success: function () {
-        console.log("Deleted")
-       
+      success: function () {     
       }
     });
+  },
+  
+  showProjectDetail: function (event) {
+    event.preventDefault();
+    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-team-id")))
+    var project = team.projects().get(parseInt($(event.currentTarget).attr("data-project-id")))
+    var ProjectShowView = new Crossedout.Views.ProjectShowView({model: project})
+    $(".center-pane").html(ProjectShowView.render().$el)
   },    
   
 });

@@ -44,7 +44,7 @@ window.Crossedout = {
       collection: Crossedout.current_user.teams()
     });
     var currentUserTeamsView = new Crossedout.Views.CurrentUserTeamsIndex({
-      collection: Crossedout.current_user.teams()
+      teams: Crossedout.current_user.teams()
     });
     
     $(".sidebar").html(indexView.render().$el);

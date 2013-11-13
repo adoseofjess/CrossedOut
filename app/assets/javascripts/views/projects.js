@@ -50,6 +50,6 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     event.preventDefault();
     
     var newTeamForm = new Crossedout.Views.TeamNewView({ collection: Crossedout.current_user.teams() });
-    $(".sidebar").prepend(newTeamForm.render().$el)
+    $(".center-pane").html(newTeamForm.render().$el)
   },
 });
