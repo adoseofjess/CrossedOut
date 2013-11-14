@@ -1,11 +1,19 @@
-<h1><%= current_user.escape("username")%>'s Teams</h1>
+<!-- <div class="dropdown">
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="#"><h3>My Teams</h3></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <div class="new-team-link"><a>Create New Team</a></div>
+      </ul>
+  </div>
+</div> -->
+<div class="sidebar-heading"><h5>TEAMS</h5></div>
 <% current_user.teams().each(function(team) { %>
-  <div class="team-show-link" data-id="<%= team.id %>"><%= team.escape("title") %></div>
+  <div class="team-show-link" data-id="<%= team.id %>"><a><%= team.escape("title") %></a></div>
     <% team.projects().each(function(project) { %>
       <a href="" class="team-project-link" data-team-id="<%=team.id%>" data-project-id="<%=project.id%>"><%=project.escape("title")%><a>
       <% }); %>
-  <br>
-  <button class="team-leave-button" data-id="<%= team.id %>">Leave team</button>
-  <br><br>
+  <!-- <br>
+  <button class="team-leave-button" data-id="<%= team.id %>">Leave team</button> -->
+
 <% }); %>
-<div class="new-team-link"><a href="">Create New Team</a></div>
+<div content="sidebar-link"><a href="" class="new-team-link">+Create New Team</a></div>

@@ -17,7 +17,7 @@ Crossedout.Views.NewTeamProjectView = Backbone.View.extend({
   
   createTeamProject: function (event) {
     event.preventDefault();
-  
+    
     var formData = $(event.currentTarget).serializeJSON();
     var that = this;
     var newTeamProject = this.model.projects().create(formData.project, 
@@ -33,10 +33,6 @@ Crossedout.Views.NewTeamProjectView = Backbone.View.extend({
           // $(".sidebar").prepend(new Crossedout.Views.TeamShowView(newTeam).render().$el)
       }
     })
-    
-    
-    
-    console.log("submitting team project")
   },
   
 });

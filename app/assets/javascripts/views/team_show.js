@@ -7,6 +7,7 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   
 	events: {
 		"click .create-new-team-project": "showCreateTeamProjectForm",
+    "click .team-leave-button": "leaveTeam",
 	},
   
   render: function () {
@@ -29,5 +30,19 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
     this.$el.append(newProjectForm.render().$el);
     return this;
   }, 
+  
+  leaveTeam: function (event) {
+    this.remove();
+    var that = this;
+    event.preventDefault();
+    this.model.members().remove(Crossedout.current_user);  
+    Crossedout.current_user.teams().remove(this.model);
+    $.ajax({
+      url: "/teams/" + this.model.get("id") + "/users/" + Crossedout.current_user.id,
+      type: "DELETE",
+      success: function () { 
+      }
+    });
+  },
   
 });

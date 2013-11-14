@@ -10,9 +10,12 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   events: {
   "keyup input": "enterTaskInfo",
   "click .completed": "checkTaskOff",
+  "submit .task-edit-form": "saveTask",
+  "click .delete-task": "deleteTask",
   },
   
   render: function () {
+    // this.remove();
     console.log("right-pane rerendering")
     var renderedContent = this.template({
       task: this.model,
@@ -74,5 +77,27 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   
   getDatePicker: function () {
       this.$el.find('.datepicker').datepicker();
-  }
+  },
+  
+  saveTask: function (event) {
+    event.preventDefault();
+    console.log('saving task')
+    var formData = $(event.currentTarget).serializeJSON();
+    var that = this;
+   
+    this.model.save({task: formData.task}, {success: function () {
+    }}
+    )
+  },
+  
+  deleteTask: function (event) {
+    event.preventDefault();
+    this.remove();
+    //to do 
+    //when i delete, i want to grab the element before and render the right-pane
+    
+    this.model.destroy({success: function () {
+      console.log("task deleted")
+    }});
+  },
 });

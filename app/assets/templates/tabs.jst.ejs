@@ -1,0 +1,6 @@
+<ul class="nav nav-tabs">
+  <li><a href="#home" data-toggle="tab">Personal Projects</a></li>
+  <% teams.each(function(team) {%>
+  <li><a href="#profile" data-toggle="tab"><%=team.escape("title")%></a></li>
+  <% }); %>
+</ul>

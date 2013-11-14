@@ -1,7 +1,8 @@
-<h1>Project Detail</h1>
-<div class="project-info"><div class="title">Title: <input class="title" type="text" value="<%= project.get('title') %>"></input></div>
+<!-- <h1>Project Detail</h1> -->
+<h1>Project</h1>
+<div class="project-info"><div class="title"><!-- Title:  --><input class="title" type="text" value="<%= project.get('title') %>"></input></div>
 <br>
-<div class="description">Description: <input class="description" type="text" value="<%= project.get('description') %>"></input><div>
+<div class="description"><!-- Description:  --><input class="description" type="text" value="<%= project.get('description') %>"></input><div>
 </div>
 <br><br>
 <div class="tasks">
@@ -18,8 +19,6 @@ Tasks: <br>
 </div>
   
 <% }); %>
-
-
-
-<div class="add-new-task">Add New Task</div>
+<div class="delete-project-button"><a>Delete Project</a></div>
+<div class="add-new-task"><a>Add New Task</a></div>
 </div>

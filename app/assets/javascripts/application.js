@@ -16,6 +16,8 @@
 //= require backbone
 //= require jquery.serializeJSON
 //= require jquery.ui.all
+//= require bootstrap
+//= require typeahead
 //= require crossedout
 //= require_tree ../templates
 //= require_tree ./models

@@ -8,9 +8,10 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   template: JST["projects/show"],
   
   events: {
-    "click .task-show-link": "showTaskDetail",
+    "click .task-input": "showTaskDetail",
     "keyup input": "enterProjectOrTaskInfo",
     "click .add-new-task": "createNewInput",
+    "click .delete-project-button": "deleteProject",
     // "mouseenter .task-show-link": "showTaskDetail",
   },
   
@@ -43,18 +44,12 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
           input.destroy({
             wait: true,
             success: function () {
-
-            //testing
               that.model.tasks().trigger("projectShift", $('.task-input').last().attr('data-id'));
             
             // $(event.currentTarget).parent().parent().prev().children().find("input").focus()
-            
             $(".right-pane").html();
           }});
-          
-          
           // fix this part so when i backspace and delete, it focuses on the previous input element
-          
         }
       //if input field is not populated and is not a task, don't do anything
       } 
@@ -144,34 +139,23 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
   },
 
   createNewInput: function () {
-    console.log('create new input called')
-    
-    
-    
-    // var newTask = new Crossedout.Models.Task({project_id: this.model.id});
-    // this.model.tasks().add(newTask);
-    //have to add newTask to server
+
     var that = this;
     var newTask = this.model.tasks().create({project_id: this.model.id}, {
+      wait: true,
       success: function () {
-        console.log("task created")
-        // that.$el.find(".task-show-link").append("<div class='task-show-link' data-id='" + newTask.id + "'><input data-id='" + newTask.id + "' type='text' class='task-show-link'></input></div>");
+        var newTaskView = new Crossedout.Views.TaskShowView({model: newTask})
+        $(".right-pane").html(newTaskView.render().$el);
       }
     });
-    
-    
-    
-    
-    
-    // Crossedout.current_user.projects().tasks().create({project_id: this.model.id}, {wait: true});
-    // var newTask = new Crossedout.Models.Task();
-    // 
-    // Crossedout.tasks.add([newTask]);
-    
-    //come back here
-    
-    
-    // <div class='task-show-link' data-id='<%=newTask.escape('cid')%>'><input data-id='<%=newTask.escape('cid')%>' type='text'></input></div>
+  },
+  
+  deleteProject: function(event) {
+    event.preventDefault();
+    this.remove();
+    this.model.destroy({success: function(model, response) {
+      console.log("Deleted")
+    }})
   },
   
    

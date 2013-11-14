@@ -1,8 +1,20 @@
-<h1>Projects</h1>
+<link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+
+<div class="crossed-out-logo">Crossed Out</div>
+
+<!-- <div class="dropdown">
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="#"><h3>My Projects</h3></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <div class="create-new-project"><a>Create New Project</a></div>
+      </ul>
+  </div>
+</div> -->
+
+<div content="sidebar-heading"><h5>PROJECTS</h5></div>
+
 <% projects.each(function(project) { %>
-<br>
-<div class="project-index-link" data-id="<%= project.id %>"><a href="/projects/<%=project.id%>" ><%= project.get('title') %></a>: <%= project.get('description') %></div>
-<button class="delete-project-button" data-id="<%= project.id %>">Delete</button>
-<br>
+<div class="project-index-link" data-id="<%= project.id %>"><a href="/projects/<%=project.id%>" ><%= project.get('title') %></a><!-- : <%= project.get('description') %> --></div>
+
 <% }); %>
-<a href="/projects/new" class="project-new-link">Create New Project</a>
+<div content="sidebar-link"><a href="/projects/new" class="project-new-link">+Create New Project</a></div>

@@ -19,15 +19,24 @@ class TeamsController < ApplicationController
   end
   
   def create
-
-    @team = Team.new(params[:team])
-    @team.member_ids = params[:member_ids]
+    
+    @team = Team.new({:title => params[:team][:title]})
     @url = new_user_url
     
+    if params[:member_ids].length == 0 
+      debugger
+      @user = User.find_by_username(params[:member_ids])
+      @team.member_ids = [@user.id]
+    end
+    # @team = Team.new(params[:team])
     
     if @team.save
-      @team.member_ids.each do |id| 
-        msg = UserMailer.welcome_email(User.find(id).username, @team, @url)
+      # @team.member_ids.each do |id| 
+#         msg = UserMailer.welcome_email(User.find(id).username, @team, @url)
+#         msg.deliver
+#       end
+      if params[:member_ids].length == 0
+        msg = UserMailer.welcome_email(@user.username, @team, @url)
         msg.deliver
       end
       render :json => @team, :include => :users

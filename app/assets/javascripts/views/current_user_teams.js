@@ -29,29 +29,29 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   
   showTeamDetail: function (event) {
     event.preventDefault();
-    
+    // $(".center-pane").toggleClass("focus");
     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
     var TeamDetailView = new Crossedout.Views.TeamShowView({team: team});
     
     var TeamProjects = new Crossedout.Views.TeamProjectsShowView({projects: team.projects()});
-    
+    $(".right-pane").html("")
     $(".center-pane").html(TeamDetailView.render().$el);
     $(".center-pane").append(TeamProjects.render().$el);
   },
   
-  leaveTeam: function (event) {
-    
-    var that = this;
-    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
-    team.members().remove(Crossedout.current_user);  
-    this.collection.remove(team);
-    $.ajax({
-      url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
-      type: "DELETE",
-      success: function () {     
-      }
-    });
-  },
+  // leaveTeam: function (event) {
+//     
+//     var that = this;
+//     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
+//     team.members().remove(Crossedout.current_user);  
+//     this.collection.remove(team);
+//     $.ajax({
+//       url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
+//       type: "DELETE",
+//       success: function () {     
+//       }
+//     });
+//   },
   
   showProjectDetail: function (event) {
     event.preventDefault();
@@ -63,7 +63,7 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   
   createNewTeam: function (event) {
     event.preventDefault();
-    
+    // $(".center-pane").toggleClass("focus");
     var newTeamForm = new Crossedout.Views.TeamNewView({ collection: Crossedout.current_user.teams() });
     $(".center-pane").html(newTeamForm.render().$el)
   },

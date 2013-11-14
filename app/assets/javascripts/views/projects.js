@@ -9,7 +9,8 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   events: {
     "click .project-index-link": "showProjectDetail",
     "click .project-new-link": "showProjectNew",
-    "click .delete-project-button": "deleteProject",
+    "click .create-new-project": "showProjectNew",
+    // "click .delete-project-button": "deleteProject",
     // "click .new-team-link": "createNewTeam",
   },
   
@@ -22,7 +23,8 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
   },
   
   showProjectDetail: function (event) {
-    console.log("show project detail event")
+    // $(".center-pane").toggleClass("focus");
+    console.log("show project detail");
     event.preventDefault();
     
     var id = parseInt($(event.currentTarget).attr('data-id'))    
@@ -37,14 +39,6 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     $(".center-pane").html(projectNewView.render().$el);
   },
   
-  deleteProject: function(event) {
-    event.preventDefault();
-    
-    var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
-    project.destroy({success: function(model, response) {
-      console.log("Deleted")
-    }})
-  },
   
   
 });

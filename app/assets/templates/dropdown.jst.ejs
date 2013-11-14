@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <div class="dropdown">
+    <a data-toggle="dropdown" href="#"><%=Crossedout.current_user.escape("username")%></a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <div class="overview"><a>My Overview</a></div>
+      <div class="personal"><a>Personal Projects</a></div>
+      <% teams.each(function(team) {%>
+      <div class="team" data-id="<%=team.id%>">
+        <a><%=team.escape("title")%></a>
+      </div>
+      <% }); %>
+  
+    </ul>
+  </div>
+</div>

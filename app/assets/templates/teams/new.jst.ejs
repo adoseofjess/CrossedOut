@@ -2,18 +2,24 @@
 
 <form>
     
-  <label for="team[title]">Title</label>
+  <label for="team_title">Title</label>
   <input
     id="team_title"
     name="team[title]"
     type="text">
   <br>
   
-  <% Crossedout.users.each(function(user) { %>
+  <!-- <% Crossedout.users.each(function(user) { %>
+    
   <input type="checkbox" id="team_user_id" name="team[member_ids][]" value="<%=user.get('id')%>"><%=user.get('username')%>
-  <% }); %>
-  
-  
+  <% }); %> -->
+  <label for="team_user_ids">Add Members</label>  
+  <input
+    class="team_users typeahead"
+    id="team_user_ids"
+    name="team[member_ids]"
+    type="text">
+    
   <!-- <label for="team_user_id">Member</label>
   <input 
     id="team_user_id"
@@ -36,6 +42,6 @@
     type="text">
   <br>
   <button class="invite-user-button">Invite</button> -->
-    
+  <br>
   <input type="submit" value="Create Team">
 </form>

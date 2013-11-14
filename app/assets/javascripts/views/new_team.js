@@ -13,6 +13,13 @@ Crossedout.Views.TeamNewView = Backbone.View.extend({
   render: function () {
     var renderedContent = this.template()
     this.$el.html(renderedContent);
+    
+    this.$el.find(".typeahead").typeahead({
+      name: 'users',                                                          
+      local: Crossedout.users.pluck("username"),                                         
+      limit: 10,    
+    })
+    
     return this;
   },
   
