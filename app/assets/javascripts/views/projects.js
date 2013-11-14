@@ -28,15 +28,21 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     event.preventDefault();
     
     var id = parseInt($(event.currentTarget).attr('data-id'))    
+    
+    var projectHeader = new Crossedout.Views.ProjectHeaderView({ model: this.collection.get(id) });
     var projectDetailView = new Crossedout.Views.ProjectShowView({ model: this.collection.get(id) });
-    $(".center-pane").html(projectDetailView.render().$el);
+     
+    $(".content-header").html(projectHeader.render().$el);
+    $(".content-left-pane").html(projectDetailView.render().$el);
   },
 
   showProjectNew: function(event) {
     event.preventDefault();
-    
+    var newProjectHeader = new Crossedout.Views.ProjectNewHeader();
     var projectNewView = new Crossedout.Views.ProjectNewView( { collection: Crossedout.current_user.projects()});
-    $(".center-pane").html(projectNewView.render().$el);
+    $(".content-right-pane").html("")
+    $(".content-header").html(newProjectHeader.render().$el);
+    $(".content-left-pane").html(projectNewView.render().$el);
   },
   
   

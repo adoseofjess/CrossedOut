@@ -23,8 +23,7 @@ class TeamsController < ApplicationController
     @team = Team.new({:title => params[:team][:title]})
     @url = new_user_url
     
-    if params[:member_ids].length == 0 
-      debugger
+    if params[:member_ids].length != 0 
       @user = User.find_by_username(params[:member_ids])
       @team.member_ids = [@user.id]
     end
@@ -35,7 +34,7 @@ class TeamsController < ApplicationController
 #         msg = UserMailer.welcome_email(User.find(id).username, @team, @url)
 #         msg.deliver
 #       end
-      if params[:member_ids].length == 0
+      if params[:member_ids].length != 0
         msg = UserMailer.welcome_email(@user.username, @team, @url)
         msg.deliver
       end

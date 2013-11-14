@@ -1,11 +1,7 @@
 Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   initialize: function (options) {
     this.collection = options.teams;
-    // console.log(current_user.get('teams'))
     this.listenTo(this.collection, "remove add change", this.render);
-    
-    //listen to the projects that belong to the teams
-    // *fix this*
     this.listenTo(Crossedout.current_user.projects(), "remove add change", this.render)
   }, 
   
@@ -16,7 +12,6 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     "click button": "leaveTeam",
     "click .team-project-link": "showProjectDetail",
     "click .new-team-link": "createNewTeam",
-    
 	},
   
   render: function () {
@@ -30,13 +25,17 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   showTeamDetail: function (event) {
     event.preventDefault();
     // $(".center-pane").toggleClass("focus");
+    
     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
     var TeamDetailView = new Crossedout.Views.TeamShowView({team: team});
-    
+    var TeamHeaderView = new Crossedout.Views.TeamShowHeaderView({team: team});
     var TeamProjects = new Crossedout.Views.TeamProjectsShowView({projects: team.projects()});
-    $(".right-pane").html("")
-    $(".center-pane").html(TeamDetailView.render().$el);
-    $(".center-pane").append(TeamProjects.render().$el);
+    var TeamMembers = new Crossedout.Views.TeamMembersShowView({team: team})
+    $(".content-header").html(TeamHeaderView.render().$el);
+    $(".content-right-pane").html("")
+    $(".content-left-pane").html(TeamDetailView.render().$el);
+    $(".content-left-pane").append(TeamProjects.render().$el);
+    $(".content-right-pane").html(TeamMembers.render().$el);
   },
   
   // leaveTeam: function (event) {
@@ -58,14 +57,17 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-team-id")))
     var project = team.projects().get(parseInt($(event.currentTarget).attr("data-project-id")))
     var ProjectShowView = new Crossedout.Views.ProjectShowView({model: project})
-    $(".center-pane").html(ProjectShowView.render().$el)
+    $(".content-left-pane").html(ProjectShowView.render().$el)
   },    
   
   createNewTeam: function (event) {
     event.preventDefault();
+    $(".content-right-pane").html("")
+    var newTeamHeader = new Crossedout.Views.NewTeamHeaderView();
+    $(".content-header").html(newTeamHeader.render().$el);
     // $(".center-pane").toggleClass("focus");
     var newTeamForm = new Crossedout.Views.TeamNewView({ collection: Crossedout.current_user.teams() });
-    $(".center-pane").html(newTeamForm.render().$el)
+    $(".content-left-pane").html(newTeamForm.render().$el)
   },
   
 });

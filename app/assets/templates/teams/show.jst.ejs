@@ -1,8 +1,13 @@
-<h1><%= team.get("title") %></h1>
+<!-- <h1><%= team.get("title") %></h1> -->
 <!-- <% members.each(function(member) { %>
   <%= member.get("username") %><br>
 <% }) %> -->
-
+Projects: 
+<br>
+<%projects.each(function(project) {%>
+  <%project.escape("title")%>
+<% })%>
+<br>
 <a href="" class="create-new-team-project">Create New Project</a>
 <br>
 <a href="" class="team-leave-button" data-id="<%= team.id %>">Leave team</a>

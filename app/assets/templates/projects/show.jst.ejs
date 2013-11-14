@@ -1,13 +1,17 @@
 <!-- <h1>Project Detail</h1> -->
-<h1>Project</h1>
-<div class="project-info"><div class="title"><!-- Title:  --><input class="title" type="text" value="<%= project.get('title') %>"></input></div>
+
+<!-- <h1>Project</h1>
+<div class="project-info"><div class="title">Title <input class="title" type="text" value="<%= project.get('title') %>"></input></div>
 <br>
-<div class="description"><!-- Description:  --><input class="description" type="text" value="<%= project.get('description') %>"></input><div>
+<div class="description">Description <input class="description" type="text" value="<%= project.get('description') %>"></input><div>
 </div>
-<br><br>
+<br><br> -->
+
 <div class="tasks">
 Tasks: <br>
-
+<% if (tasks.length == 0) { %>
+You currently have no tasks.
+<% } %>
 
 <% tasks.each(function(task, index) { %>
   
@@ -15,7 +19,9 @@ Tasks: <br>
   <div class="task-index"><%=index + 1%>.</div>
   <div class="task-show-link" data-id="<%= task.id %>">
     <input class="task-input" data-id="<%= task.id %>" type="text" value="<%= task.get('title') %>"></input>
+    
   </div>
+  
 </div>
   
 <% }); %>

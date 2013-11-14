@@ -1,24 +1,25 @@
-<h1>Task</h1>
+<!-- <h1>Task</h1> -->
 <form class="task-edit-form">
   <% if (task) { %> 
-  Due Date: <input type="datetime" name="task[due_date]" class="datepicker" name="somedatafield" value="<%= task.get('due_date') %>" />
+
 
   <div class="task" data-id="<%= task.get('id') %>">
 
   Title: <input class="title" name="task[title]" type="text" value="<%= task.get('title') %>"></input>
   <br>
-
+  Due Date: <input type="datetime" name="task[due_date]" class="datepicker" name="somedatafield" value="<%= task.get('due_date') %>" />
+  <br>
   Description: <input class="description" name="task[description]" type="text" value="<%= task.get('description') %>"></input>
   <br>
     <% if (task.get("completed")) { %>
       <input class="completed" type="checkbox" checked>Completed?</input>
-      Task completed at <%= task.get("completed_at") %>
+      <br>Task completed at <%= task.get("completed_at") %>
     <% } else { %>
       <input class="completed" type="checkbox">Completed?</input>
     <% } %>
     <% }; %>
-
+    <br>
     <input class="save-task" data-id="<%=task.id%>" type="submit" value="Save Task">
 </form>
-
   <div class="delete-task"><input class="delete-task" data-id="<%=task.id%>" type="submit" value="Delete Task"></div>
+  

@@ -3,6 +3,7 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   
   initialize: function (options) {
     this.model = options.team;
+    this.listenTo(this.model, "add remove change", this.render);
   }, 
   
 	events: {
@@ -24,6 +25,16 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   
   showCreateTeamProjectForm: function (event) {
     event.preventDefault();
+    
+    // var that = this;
+    // var newProject = this.model.projects().create({team_id: this.model.id}, {
+    //   wait: true,
+    //   success: function () {
+    //     var newTaskView = new Crossedout.Views.TaskShowView({model: newTask})
+    //     $(".content-right-pane").html(newTaskView.render().$el);
+    //   }
+    // });
+    
     
     var newProjectForm = new Crossedout.Views.NewTeamProjectView({team: this.model})
     

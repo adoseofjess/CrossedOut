@@ -5,13 +5,28 @@
   <%= @users.to_json.html_safe %>
 </script>
 
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
 
 <div class="three-panes">
+  
+  <div class="content">
+    <div class="sidebar"></div>
+      
+    <div class="not-sidebar">
+      <div class="content-header"><div class="trashcan"></div></div>
+      <div class="content-left-pane pane"></div>
+      <div class="content-right-pane pane"></div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- <div class="three-panes">
   <div class="sidebar"></div>
   <div class="center-pane"></div>
   <div class="right-pane"></div>
-</div>
+</div> -->
 
 <!-- <div class="row">
   <div class="col-xs-6 col-md-4"><div class="sidebar"></div></div>
