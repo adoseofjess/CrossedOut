@@ -4,11 +4,14 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   initialize: function (options) {
     this.model = options.team;
     this.listenTo(this.model, "add remove change", this.render);
+    this.listenTo(this.model.projects(), "add remove change", this.render);
   }, 
   
 	events: {
 		"click .create-new-team-project": "showCreateTeamProjectForm",
     "click .team-leave-button": "leaveTeam",
+    "click .delete-team-project-button": "deleteProject",
+    "click .project-show-link": "showProjectDetail",
 	},
   
   render: function () {
@@ -35,15 +38,18 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
     //   }
     // });
     
-    
     var newProjectForm = new Crossedout.Views.NewTeamProjectView({team: this.model})
     
-    this.$el.append(newProjectForm.render().$el);
+    this.$el.find(".all-projects").after(newProjectForm.render().$el)
+    // this.$el.append(newProjectForm.render().$el);
     return this;
   }, 
   
   leaveTeam: function (event) {
+    $(".content-header").html("");
+    $(".content-right-pane").html("");
     this.remove();
+    
     var that = this;
     event.preventDefault();
     this.model.members().remove(Crossedout.current_user);  
@@ -54,6 +60,24 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
       success: function () { 
       }
     });
+  },
+  
+  deleteProject: function (event) {
+    var project = this.model.projects().get(parseInt($(event.currentTarget).attr("data-id")));
+    project.destroy({success: function(model, response) {
+      console.log("Deleted")
+    }})
+  },
+  
+  showProjectDetail: function (event) {
+    
+    event.preventDefault();
+    var project = this.model.projects().get(parseInt($(event.currentTarget).attr("data-id")))
+    var TeamProjectHeader = new Crossedout.Views.TeamProjectHeaderView({model: project})
+    var TeamProjectDetailView = new Crossedout.Views.TeamProjectShowView({model: project})
+    $(".content-header").html(TeamProjectHeader.render().$el);
+    $(".content-left-pane").html(TeamProjectDetailView.render().$el);
+    
   },
   
 });

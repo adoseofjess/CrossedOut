@@ -16,4 +16,6 @@ Crossedout::Application.routes.draw do
   # resources :user_team_joins
 
   root :to => "static_pages#root"
+  
+  # root :to => "static_pages#index"
 end

@@ -6,12 +6,17 @@
       </ul>
   </div>
 </div> -->
-<div class="sidebar-heading"><h5>TEAMS</h5></div>
+<div class="sidebar-heading"><h5>MY TEAMS</h5></div>
 <% current_user.teams().each(function(team) { %>
   <div class="team-show-link" data-id="<%= team.id %>"><a><%= team.escape("title") %></a></div>
-    <% team.projects().each(function(project) { %>
+      
+    <!-- <% team.projects().each(function(project) { %>
+      
       <a href="" class="team-project-link" data-team-id="<%=team.id%>" data-project-id="<%=project.id%>"><%=project.escape("title")%><a>
-      <% }); %>
+        <br>
+      
+      <% }); %> -->
+    
   <!-- <br>
   <button class="team-leave-button" data-id="<%= team.id %>">Leave team</button> -->
 

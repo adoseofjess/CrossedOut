@@ -9,7 +9,8 @@ Crossedout.Views.TeamProjectsShowView = Backbone.View.extend({
   
 	events: {
     "click .delete-team-project-button": "deleteProject",
-    // "click .project-show-link": "showProjectTasks",
+    "click .project-show": "showProjectDetail",
+    
 	},
   
   render: function () {
@@ -21,20 +22,20 @@ Crossedout.Views.TeamProjectsShowView = Backbone.View.extend({
     return this;
   },  
   
-  deleteProject: function (event) {
-    var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")));
-    project.destroy({success: function(model, response) {
-      console.log("Deleted")
-    }})
-  },
+  // deleteProject: function (event) {
+  //   var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")));
+  //   project.destroy({success: function(model, response) {
+  //     console.log("Deleted")
+  //   }})
+  // },
   
-  // showProjectTasks: function (event) {
-//     event.preventDefault();
-//     var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
-//     var ProjectTasksView = new Crossedout.Views.TeamProjectTasksShowView({project: project});
-//     
-//     // $(event.currentTarget).after(ProjectTasksView);
-//     $(event.currentTarget).after("<br>Testing 123")
-//     
-//   },
+  showProjectDetail: function (event) {
+    debugger
+    event.preventDefault();
+    var project = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
+    var ProjectTasksView = new Crossedout.Views.TeamProjectTasksShowView({project: project});
+    $(".content-right-pane").html(ProjectTasksView.render().$el);
+    
+    
+  },
 });

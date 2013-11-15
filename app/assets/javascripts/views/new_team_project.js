@@ -33,6 +33,12 @@ Crossedout.Views.NewTeamProjectView = Backbone.View.extend({
           // $(".sidebar").prepend(new Crossedout.Views.TeamShowView(newTeam).render().$el)
       }
     })
+    
+    var newTeamProjectHeader = new Crossedout.Views.TeamProjectHeaderView({model: newTeamProject});
+    var newTeamProjectShow = new Crossedout.Views.TeamProjectShowView({model: newTeamProject});
+    $(".content-header").html(newTeamProjectHeader.render().$el);
+    $(".content-left-pane").html(newTeamProjectShow.render().$el);
+    $(".content-right-pane").html("");
   },
   
 });

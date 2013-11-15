@@ -33,16 +33,28 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     var projectDetailView = new Crossedout.Views.ProjectShowView({ model: this.collection.get(id) });
      
     $(".content-header").html(projectHeader.render().$el);
-    $(".content-left-pane").html(projectDetailView.render().$el);
+    // $(".content-left-pane").html(projectDetailView.render().$el);
+    // $(".content-right-pane").html("");
+    
+    $(".left-header").html("<span class='header-text'>Tasks</span>")    
+    $(".pane-left-not-header").html(projectDetailView.render().$el);
+    $(".pane-right-not-header").html("");
   },
 
   showProjectNew: function(event) {
     event.preventDefault();
     var newProjectHeader = new Crossedout.Views.ProjectNewHeader();
     var projectNewView = new Crossedout.Views.ProjectNewView( { collection: Crossedout.current_user.projects()});
-    $(".content-right-pane").html("")
-    $(".content-header").html(newProjectHeader.render().$el);
-    $(".content-left-pane").html(projectNewView.render().$el);
+    
+    // $(".content-header").html(newProjectHeader.render().$el);
+    // $(".content-left-pane").html(projectNewView.render().$el);
+    // $(".content-right-pane").html("")
+    
+    $(".content-header").html("");
+    $(".left-header").html("<span class='header-text'>Create Project</span>")    
+    $(".pane-left-not-header").html(projectNewView.render().$el);
+    $(".pane-right-not-header").html("")
+    
   },
   
   

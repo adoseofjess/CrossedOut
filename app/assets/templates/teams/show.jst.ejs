@@ -2,11 +2,24 @@
 <!-- <% members.each(function(member) { %>
   <%= member.get("username") %><br>
 <% }) %> -->
-Projects: 
-<br>
+
+<!-- <br><div class="project-show">
 <%projects.each(function(project) {%>
   <%project.escape("title")%>
 <% })%>
+</div> -->
+
+<div class="all-projects">
+<% projects.each(function(project) { %>
+  <div class="project-show" data-id="<%= project.id %>">
+  <a href="" class="project-show-link" data-id="<%= project.id %>"><%= project.get("title") %></a><br>
+  </div>
+  <button class="delete-team-project-button" data-id="<%= project.id %>">Delete project</button>
+  <br>
+<% }) %>
+</div>
+
+
 <br>
 <a href="" class="create-new-team-project">Create New Project</a>
 <br>

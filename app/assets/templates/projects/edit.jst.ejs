@@ -1,0 +1,32 @@
+<form>
+  
+  <label for="project_title">Title</label>
+  <input
+    id="project_title"
+    name="project[title]"
+    value="<%=project.get('title')%>"
+    type="text">
+  <br>
+  
+  <label for="project_description">Description</label>
+  <input
+    id="project_description"
+    name="project[description]"
+    value="<%=project.get('description')%>"
+    type="text">
+  <br>
+  
+  <input
+    id="project_user_id"
+    name="project[projectable_id]"
+    value="<%=Crossedout.current_user.id%>"
+    type="hidden">
+  
+  <input
+    id="project_user_id"
+    name="project[projectable_type]"
+    value="User"
+    type="hidden">
+  
+  <input type="submit" value="Edit Project">
+</form>

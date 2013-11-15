@@ -1,1 +1,20 @@
-<div class="detail-title"><%= team.escape("title") %></div>
+<!-- <div class="detail-title"><%= team.escape("title") %></div> -->
+
+
+<div class="content-main">
+  <div class="detail-title"><%= team.escape("title") %></div>
+  <div class="detail-description"><%=team.escape("description")%></div>
+</div>
+<div class="trashcan">
+  <div class="remove">
+  <button class="btn btn-danger">
+    <span class="glyphicon glyphicon-trash"></span>
+  </button>
+  </div>
+  <div class="edit">
+  <button class="btn btn-info">
+    <span class="glyphicon glyphicon-pencil"></span>
+  </button>
+  </div>
+</div>
+

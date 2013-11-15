@@ -1,7 +1,8 @@
-Add Team Members:
+<!-- Add Team Members: -->
+<br>
 <form>
 
-  <input type="hidden" name="team_id" value="<%=team.get('id')%>">
+  <input type="hidden" name="team_id" value="<%=team.id%>">
   
   <!-- <select name="user_id">
     <option></option>
@@ -11,9 +12,18 @@ Add Team Members:
   </select> -->
   
   
-  <% Crossedout.users.each(function(user) { %>
+  <!-- <% Crossedout.users.each(function(user) { %>
   <input type="checkbox" id="team_user_id" value="<%=user.get('id')%>"><%=user.get('username')%>
   <% }) %>
+   -->
+  
+  <label for="team_user_ids">Add Members</label>  
+  <br>
+  <input
+    class="team_users typeahead"
+    id="team_user_ids"
+    name="team[member_ids]"
+    type="text">
   
   
   <!-- <label for="team_user_id">Member</label>
@@ -30,6 +40,6 @@ Add Team Members:
     type="text">
   <br>
   <button class="invite-user-button">Invite</button> -->
-    
+  <br>
   <input type="submit" value="Add Member">
 </form>

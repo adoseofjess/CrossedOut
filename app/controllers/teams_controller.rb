@@ -64,6 +64,7 @@ class TeamsController < ApplicationController
    
     @user = User.find(@user_id)
     @team = Team.find(params[:team_id])
+    @team.members<<@user
     @url = new_user_url
     
     msg = UserMailer.welcome_email(@email, @team, @url)

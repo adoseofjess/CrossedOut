@@ -12,6 +12,7 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   "click .completed": "checkTaskOff",
   "submit .task-edit-form": "saveTask",
   "click .delete-task": "deleteTask",
+  // "click .save-task": "saveTask"
   },
   
   render: function () {
@@ -79,11 +80,13 @@ Crossedout.Views.TaskShowView = Backbone.View.extend({
   },
   
   saveTask: function (event) {
+    
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
     var that = this;
    
     this.model.save({task: formData.task}, {success: function () {
+      console.log(this.model)
     }}
     )
   },

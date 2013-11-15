@@ -12,7 +12,6 @@
  *= require_tree .
  *= require jquery.ui.all
  *= require bootstrap
- *= require bootstrap-theme
  */
 
 html, body {
@@ -24,7 +23,6 @@ html, body {
   
   font-size: 0.8em;
 /*  background-color: #1d6a47;*/
-  background-color: white;
   color: black;
 /*  font-weight: 200;*/
 }
@@ -42,27 +40,26 @@ input {
 /*  padding: 10px;*/
 }
 
-.crossed-out-logo {
-  font-family: 'Pacifico', Helvetica, sans-serif;
-  font-size: 3.5em;
-  text-align: center;
-  color: #787878;
-/*  font-color: ;*/
-}
-
 .sidebar {
+  font-size: 1.5em;
   border-style: 1px solid white;
   float: left;
   width: 25%;
   height: 100%;
   position: fixed;
   overflow: scroll;
-  background: #484848;
+  background: rgb(43, 47, 63);
   display: inline-block;
   padding: 15px;
 /*  border-radius: 25px;*/
+}
 
-  
+.crossed-out-logo {
+  font-family: 'Pacifico', Helvetica, sans-serif;
+  font-size: 2.9em;
+  text-align: center;
+  color: rgb(201, 203, 211);
+/*  font-color: ;*/
 }
 
 /*.center-pane {
@@ -76,12 +73,42 @@ input {
   border-radius: 25px;
 }*/
 
+.content-header {
+  background: rgb(255, 255, 255);
+  margin-top: 0%;
+/*  margin-bottom: 15%;*/
+  width: 100%;
+/*  height: 20%;*/
+  height: auto;
+/*  border-bottom:thin solid #ff0000;*/
+  border: 1px solid rgb(213, 213, 218);
+}
+
+.header-container {
+/*  height: 100%;*/
+/*  height: auto;*/
+  height: 100px;
+}
+
 .trashcan {
   height: 100%;
-  width: 100%;
-  margin-left: 80%;
-  display: inline-block;
+  width: 10%;
+/*  display: inline-block;*/
+/*  float: left;*/
+/*  background-color: grey;*/
+  float: right;
+}
+
+.content-main {
+  margin: 0px;
+/*  margin-top: 5%;*/
+/*  margin-bottom: 15%;*/
+  width: 90%;
+/*  height: 100%;*/
+/*  height: 100px;*/
+/*  background: red;*/
   float: left;
+/*  display: inline-block;*/
 }
 
 .not-sidebar {
@@ -89,6 +116,7 @@ input {
   height: 100%;
   width: 75%;
   margin-left: 25%;
+  background-color: rgb(249, 249, 249);
 }
 
 .content {
@@ -103,31 +131,98 @@ input {
 /*  background: red;*/
 }
 
-.content-header {
-/*  background: red;*/
-  margin-top: 5%;
-/*  margin-bottom: 15%;*/
-  width: 100%;
-  height: 15%;
-  border-bottom:thin solid #ff0000;
-}
 .pane {
-  height: 100%;
-  width: 50%;
-  float: left;
-  margin-top: 3%;
+  height: 95%;
+  width: 45%;
+/*  margin-top: 3%;*/
   display: inline-block;
-  padding: 10px;
+/*  padding: 40px;*/
+/*  background: navajowhite;*/
+  border-radius: 5px;
+  border: 1px solid rgb(213, 213, 218);
+  margin: 2.5%;
+  box-sizing: border-box;
+  font-size: 1.5em;
 }
+
 .content-left-pane {
 /*  background: navajowhite;*/
   
+  float: left;
 }
 
 .content-right-pane {
 /*  background: lavender;*/
   
+  
+  float: right;
 }
+
+
+.pane-header {
+  padding-top: 30px;
+  height: 10%;
+  width: 100%;
+/*  background: black;*/
+  border-bottom: 1px solid black;
+  margin: 0px;
+  background: rgb(255, 255, 255);
+  
+}
+
+.header-text {
+
+  margin-top: 40%;
+  margin-left: 10%;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.left-header {
+  
+}
+
+.right-header {
+  
+}
+
+.not-header {
+  height: 90%;
+  width: 100%;
+/*  background: yellow;*/
+  padding: 40px;
+  background: rgb(251, 251, 253);
+/*  background: red;*/
+}
+
+.pane-left-not-header {
+  
+}
+
+.pane-right-not-header {
+  
+}
+
+.sidebar-heading {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  
+  font-size: 3em;
+  width: 100%;
+  margin: 0px;
+  height: 100%; 
+}
+
+.sidebar-heading h5 {
+  color: rgb(78, 83, 102);
+}
+
+.sidebar-heading:hover {
+/*  color:yellow;*/
+}
+
+/*.team-show-link:hover {
+  color:yellow;
+}*/
 
 .focus {
   position: fixed;
@@ -157,20 +252,27 @@ input[type=text] {
 /*  background-color: navajowhite;*/
 /*  font-family: 'Roboto Condensed', sans-serif;*/
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
 /*  font-family: Georgia, serif;*/
 }
 
 .detail-title {
-  margin-top: 10px;
-  margin-left: 10px;
-  font-size: 20px;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 40px;
+}
+
+.header-container {
+  margin-top: 15px;
+  margin-left: 20px;
+/*  font-size: 10px;*/
 }
 
 .detail-description {
 
-  font-size: 15px;
+  font-size: 20px;
   color: grey;
+  margin-left: 25px;
 }
 
 .add-new-task {
@@ -187,4 +289,25 @@ input[type=text] {
 
 .task-show-link {
   display: inline-block;
+}
+
+.about-project {
+  width: 100%;
+  height: 33%;
+  display: block;
+  background: navajowhite;
+}
+
+.about-me {
+  width: 100%;
+  display: block;
+  height: 33%;
+/*  background: ;*/
+}
+
+.log-in {
+  width: 100%;
+  display: block;
+  height: 33%;
+  background: navajowhite;
 }
