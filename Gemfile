@@ -45,3 +45,4 @@ gem 'jquery-ui-rails'
 
 # To use debugger
 gem 'debugger'
+
