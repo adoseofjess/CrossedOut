@@ -1,4 +1,37 @@
 <div class="index-page">
+  <div class="guest-login">
+    <form action="<%= session_url %>" method="post">
+      <input
+        name="authenticity_token"
+        type="hidden"
+        value="<%= form_authenticity_token %>">
+  
+        <input 
+          id="user_username"
+          name="user[username]"
+          value="guest"
+          type="hidden">
+        <br>
+    
+        <input
+          id="user_password"
+          name="user[password]"
+          value="helloworld"
+          type="hidden">
+        <br>
+      <button class="btn btn-danger">
+        <input type="submit" value="Log in as Guest">
+      </button>
+    </form>
+    
+    <!-- <div class="trashcan">
+      <button class="btn btn-danger">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </div> -->
+    
+    
+  </div>
   <div class="about-project"></div>
   <div class="about-me"></div>
   <div class="log-in"></div>

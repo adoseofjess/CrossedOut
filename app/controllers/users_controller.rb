@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     
     if @user.save
       self.current_user = @user
-      redirect_to user_url(@user)
+      redirect_to root_url
     else
       render :json => @user.errors.full_messages
     end
@@ -22,14 +22,14 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  def show
-    if params[:id]
-      @user = User.find(params[:id])
-      @tasks = Task.find_all_by_user_id(@user.id)
-    else
-      redirect_to user_url(current_user)
-    end
-  end
+  # def show
+  #   if params[:id]
+  #     @user = User.find(params[:id])
+  #     @tasks = Task.find_all_by_user_id(@user.id)
+  #   else
+  #     redirect_to user_url(current_user)
+  #   end
+  # end
   
   def destroy
     if params[:team_id]

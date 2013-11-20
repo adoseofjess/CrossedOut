@@ -15,8 +15,10 @@ Crossedout::Application.routes.draw do
   resources :projects, :only => [:index, :new, :create, :edit, :show, :update, :destroy]
   
   # resources :user_team_joins
-
+  
   root :to => "static_pages#root"
   
   # root :to => "static_pages#index"
+  
+  # get 'index', to: 'static_pages#index'
 end
