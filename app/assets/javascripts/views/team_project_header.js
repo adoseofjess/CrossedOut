@@ -1,7 +1,7 @@
 Crossedout.Views.TeamProjectHeaderView = Backbone.View.extend({
   initialize: function (options) {
     this.model = options.model;
-    
+    this.$el = $("<div class=\"header-container\"></div>")
   },
   
   template: JST["teams/team_project_header"],

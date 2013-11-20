@@ -1,6 +1,6 @@
 Crossedout.Views.ProjectNewHeader = Backbone.View.extend({
   initialize: function () {
-
+    this.$el = $("<div class=\"header-container\"></div>") 
   },
   
   template: JST["projects/new_header"],
