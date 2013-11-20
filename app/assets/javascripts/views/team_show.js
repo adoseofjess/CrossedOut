@@ -29,15 +29,6 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   showCreateTeamProjectForm: function (event) {
     event.preventDefault();
     
-    // var that = this;
-    // var newProject = this.model.projects().create({team_id: this.model.id}, {
-    //   wait: true,
-    //   success: function () {
-    //     var newTaskView = new Crossedout.Views.TaskShowView({model: newTask})
-    //     $(".content-right-pane").html(newTaskView.render().$el);
-    //   }
-    // });
-    
     var newProjectForm = new Crossedout.Views.NewTeamProjectView({team: this.model})
     
     this.$el.find(".all-projects").after(newProjectForm.render().$el)
@@ -46,6 +37,8 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   }, 
   
   leaveTeam: function (event) {
+    console.log("LEAVING TEAM")
+    
     $(".content-header").html("");
     $(".content-right-pane").html("");
     this.remove();
@@ -70,13 +63,17 @@ Crossedout.Views.TeamShowView = Backbone.View.extend({
   },
   
   showProjectDetail: function (event) {
-    
+    console.log("SHOW PROJECT DETAIL")
     event.preventDefault();
     var project = this.model.projects().get(parseInt($(event.currentTarget).attr("data-id")))
     var TeamProjectHeader = new Crossedout.Views.TeamProjectHeaderView({model: project})
     var TeamProjectDetailView = new Crossedout.Views.TeamProjectShowView({model: project})
     $(".content-header").html(TeamProjectHeader.render().$el);
-    $(".content-left-pane").html(TeamProjectDetailView.render().$el);
+    $(".left-header").html("<span class='header-text'>Tasks</span>")
+    $(".pane-left-not-header").html(TeamProjectDetailView.render().$el);
+    $(".right-header").html("");
+    $(".pane-right-not-header").html("");
+    
     
   },
   

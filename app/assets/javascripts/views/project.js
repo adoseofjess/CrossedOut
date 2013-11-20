@@ -31,7 +31,8 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
     var id = parseInt($(event.currentTarget).attr('data-id'))    
     var taskDetailView = new Crossedout.Views.TaskShowView({ model: this.model.tasks().get(id) });
     this.taskDetailView = taskDetailView;
-    $(".content-right-pane").html(taskDetailView.render().$el);
+    $(".right-header").html("<span class='header-text'>Task Detail</span>");
+    $(".pane-right-not-header").html(taskDetailView.render().$el);
   },
   
   enterProjectOrTaskInfo: function (event) {
@@ -145,7 +146,8 @@ Crossedout.Views.ProjectShowView = Backbone.View.extend({
       wait: true,
       success: function () {
         var newTaskView = new Crossedout.Views.TaskShowView({model: newTask})
-        $(".content-right-pane").html(newTaskView.render().$el);
+        $(".right-header").html("<span class='header-text'>Task Detail</span>");
+        $(".pane-right-not-header").html(newTaskView.render().$el);
       }
     });
   },

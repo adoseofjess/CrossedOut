@@ -29,8 +29,6 @@ gem 'pg'
 gem 'underscore-rails'
 gem 'jquery-ui-rails'
 
-  
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -45,4 +43,5 @@ gem 'jquery-ui-rails'
 
 # To use debugger
 gem 'debugger'
+
 

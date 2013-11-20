@@ -33,7 +33,8 @@ Crossedout.Views.TeamEditView = Backbone.View.extend({
         var UpdatedTeamShowHeader = new Crossedout.Views.TeamShowHeaderView({team: that.model})
         var UpdatedTeamShowView = new Crossedout.Views.TeamShowView({team: that.model})
         $(".content-header").html(UpdatedTeamShowHeader.render().$el);
-        $(".content-left-pane").html(UpdatedTeamShowView.render().$el);
+        $(".pane-left-not-header").html(UpdatedTeamShowView.render().$el);
+        
         
       }
     })

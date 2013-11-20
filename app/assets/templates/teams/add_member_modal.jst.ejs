@@ -1,0 +1,68 @@
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Manage Team: <%=team.escape("title")%></h4>
+        
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs">
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            <li><a href="#members" data-toggle="tab">Members</a></li>
+            <li><a href="#advanced" data-toggle="tab">Advanced</a></li>
+          </ul>
+          
+          <div class="tab-content">
+            
+              <div class="tab-pane active" id="settings">
+                <form>
+                  <label for"team_title">Team Name</label>
+                  <input
+                    id="team_title"
+                    name="team[title]"
+                    value="<%=team.escape('title')%>"
+                    type="text">
+                    <br>
+                  <input type="submit" class="submit-update" value="Update Team">
+                </form>
+                
+                
+              </div>
+              <div class="tab-pane" id="members">
+              
+                <table class="table table-hover">
+                <tr><b><%=members.length%> Member(s)</b></tr>
+                  <div class="member-show">
+                  <% members.each(function(member) { %>
+                    <tr><td><span class="name"><%=member.escape("username")%></span></td></tr>
+                    <% }); %>
+                  </div>
+                
+                </table>
+                <br>
+                <br>
+                <br>
+                <div class="invite-header"><b>Add Members to <%=team.escape("title")%></b></div>
+                <br>
+                <form>
+                  <label for"team_user_email">Email</label>
+                  <input
+                    class="team_users typeahead"
+                    id="team_user_email"
+                    name="team[email]"
+                    type="text">
+                    <br>
+                  <input class="submit-invite" type="submit" value="Invite Member">
+                </form>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="close-modal" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+

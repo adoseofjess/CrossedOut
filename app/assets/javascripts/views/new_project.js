@@ -30,7 +30,8 @@ Crossedout.Views.ProjectNewView = Backbone.View.extend({
     var ProjectShowHeader = new Crossedout.Views.ProjectHeaderView({model: newProject});
     var ProjectShowView = new Crossedout.Views.ProjectShowView({model: newProject});
     $(".content-header").html(ProjectShowHeader.render().$el);
-    $(".content-left-pane").html(ProjectShowView.render().$el);
+    $(".left-header").html("<span class='header-text'>Tasks</span>");
+    $(".pane-left-not-header").html(ProjectShowView.render().$el);
   },
   
 });

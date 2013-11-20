@@ -6,19 +6,56 @@
       </ul>
   </div>
 </div> -->
-<div class="sidebar-heading"><h5>MY TEAMS</h5></div>
+<div class="sidebar-heading"><h5>
+  
+    <div class="maximize">
+    <button>
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </button>
+    </div>
+  
+    <div class="my-teams-header">MY TEAMS</div>
+  
+  </h5>
+  
+</div>
 <% current_user.teams().each(function(team) { %>
-  <div class="team-show-link" data-id="<%= team.id %>"><a><%= team.escape("title") %></a></div>
-      
-    <!-- <% team.projects().each(function(project) { %>
-      
-      <a href="" class="team-project-link" data-team-id="<%=team.id%>" data-project-id="<%=project.id%>"><%=project.escape("title")%><a>
-        <br>
-      
-      <% }); %> -->
+  <div class="team-show-bar">
     
-  <!-- <br>
-  <button class="team-leave-button" data-id="<%= team.id %>">Leave team</button> -->
+    
+    
+    <div class="team-show-link" data-id="<%= team.id %>"><a><%= team.escape("title") %></a></div>
+    
+    
+    <div class="btn-group">
+   
+      <button type="button" class="btn btn-default btn-group-sm" data-toggle="dropdown">
+  
+        <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li><a href="#" class="invite-manage-members" data-id="<%=team.id%>">Invite and Manage Members</a></li>
+        <li><a href="#" class="edit-workspace-settings" data-id="<%=team.id%>">Edit Workspace Settings</a></li>
+        <li><a href="#" class="leave-team" data-id="<%=team.id%>">Remove Me From <%=team.escape("title")%></a></li>
+        <li class="divider"></li>
+        <li><a href="#" class="show-tags" data-id="<%=team.id%>">Show Tags List</a></li>
+        <li><a href="#" class="show-archived-projects" data-id="<%=team.id%>">Show Archived Projects</a></li>
+      </ul>
+    </div>
+    
+    
+    
+      
+  </div>
+  
+  
+  <!-- <button class="btn btn-default btn-group-sm">
+    <span class="glyphicon glyphicon-cog"></span>
+  </button> -->
+
+    
+    
+    
 
 <% }); %>
-<div content="sidebar-link"><a href="" class="new-team-link">+Create New Team</a></div>
+<div class="sidebar-link"><a href="" class="new-team-link">+Create New Team</a></div>

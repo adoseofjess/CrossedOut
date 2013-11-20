@@ -21,9 +21,9 @@ html, body {
 /*  font-family: Georgia, serif;*/
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   
-  font-size: 0.8em;
+/*  font-size: 1em;*/
 /*  background-color: #1d6a47;*/
-  color: black;
+/*  color: black;*/
 /*  font-weight: 200;*/
 }
 
@@ -50,7 +50,9 @@ input {
   overflow: scroll;
   background: rgb(43, 47, 63);
   display: inline-block;
-  padding: 15px;
+  
+  z-index: 0;
+/*  padding: 15px;*/
 /*  border-radius: 25px;*/
 }
 
@@ -60,6 +62,7 @@ input {
   text-align: center;
   color: rgb(201, 203, 211);
 /*  font-color: ;*/
+  padding-bottom: 30px;
 }
 
 /*.center-pane {
@@ -116,7 +119,13 @@ input {
   height: 100%;
   width: 75%;
   margin-left: 25%;
+  
+  
+/*  position: fixed;*/
+/*  left: 240px;*/
   background-color: rgb(249, 249, 249);
+  
+  overflow: hidden;
 }
 
 .content {
@@ -133,31 +142,47 @@ input {
 
 .pane {
   height: 95%;
-  width: 45%;
+  width: 32%;
 /*  margin-top: 3%;*/
   display: inline-block;
-/*  padding: 40px;*/
+  padding: 0px;
 /*  background: navajowhite;*/
   border-radius: 5px;
   border: 1px solid rgb(213, 213, 218);
   margin: 2.5%;
   box-sizing: border-box;
   font-size: 1.5em;
+/*  z-index: 0;*/
 }
 
 .content-left-pane {
 /*  background: navajowhite;*/
+/*  position: absolute;*/
+/*  width: 45%;*/
+  top-margin: 10px;
+  z-index: 1;
+/*  float: left;*/
+  position: absolute;
   
-  float: left;
+  display: inline-block;
+  
+  margin-left: 5%;
+  box-sizing: border-box;
 }
 
 .content-right-pane {
 /*  background: lavender;*/
-  
-  
-  float: right;
+  z-index: 0;
+/*  position: absolute;*/
+/*  width: 45%;*/
+  top-margin: 10px;
+/*  float: right;*/
+  display: inline-block;
+  position: absolute;
+  margin-left: 40%;
+/*  float: left;*/
+/*  box-sizing: border-box;*/
 }
-
 
 .pane-header {
   padding-top: 30px;
@@ -188,19 +213,19 @@ input {
 
 .not-header {
   height: 90%;
-  width: 100%;
+/*  width: 100%;*/
 /*  background: yellow;*/
-  padding: 40px;
+/*  padding: 40px;*/
   background: rgb(251, 251, 253);
 /*  background: red;*/
 }
 
 .pane-left-not-header {
-  
+  padding: 20px;
 }
 
 .pane-right-not-header {
-  
+  padding: 20px; 
 }
 
 .sidebar-heading {
@@ -210,6 +235,8 @@ input {
   width: 100%;
   margin: 0px;
   height: 100%; 
+  padding-left: 10px;
+  
 }
 
 .sidebar-heading h5 {
@@ -276,7 +303,7 @@ input[type=text] {
 }
 
 .add-new-task {
-  color: grey;
+/*  color: grey;*/
 }
 
 .task-show {
@@ -311,3 +338,78 @@ input[type=text] {
   height: 33%;
   background: navajowhite;
 }
+
+.team-show-link, .project-index-link-text, .sidebar-link, .new-team-link, .project-new-link {
+  color: black;
+}
+
+.team-show-link a {
+  text-decoration: none;
+/*  color: black;*/
+}
+
+.team-show-bar {
+  transition: background 0.3s ease;
+/*  transition: color 0.3s ease;*/
+  height: 50px;
+
+}
+
+.sidebar-link {
+  transition: background 0.3s ease;
+/*  transition: color 0.3s ease;*/
+  height: 50px;
+  line-height: 50px;
+  padding-left: 10px;
+  
+}
+
+.sidebar-link a {
+  font-size: 20px;
+}
+
+.team-show-bar:hover {
+  background: #a02323;
+/*  color: white;*/
+}
+
+.sidebar-link:hover {
+  background: #a02323;
+/*  color: white;*/
+}
+
+.team-show-link {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 50px;
+  
+  padding-left: 10px;
+}
+
+.invite-form-field {
+  display: inline-block;
+}
+
+.maximize {
+  display: inline-block;
+  float: right;
+}
+
+.minimize {
+  display: inline-block;
+  float: left;
+}
+
+.arrow {
+  color: black;
+}
+
+.dropdown-menu {
+  z-index: 1;
+}
+
+.my-teams-header, .sidebar-heading {
+  font-size: 1.5em;
+  color: grey;
+}
+

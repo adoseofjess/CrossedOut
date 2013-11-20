@@ -9,10 +9,14 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   
 	events: {
     "click .team-show-link": "showTeamDetail",
-    "click button": "leaveTeam",
+    "click .leave-team": "leaveTeam",
     "click .team-project-link": "showProjectDetail",
     "click .new-team-link": "createNewTeam",
+    "click .invite-manage-members": "inviteManageMembers",
+    "click .maximize": "maximizePane",
+    "click .minimize": "minimizePane",
 	},
+  
   
   render: function () {
     var renderedContent = this.template({
@@ -23,9 +27,9 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
   },
   
   showTeamDetail: function (event) {
+    console.log("in show team detail")
     event.preventDefault();
     // $(".center-pane").toggleClass("focus");
-    
     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
     var TeamDetailView = new Crossedout.Views.TeamShowView({team: team});
     var TeamHeaderView = new Crossedout.Views.TeamShowHeaderView({team: team});
@@ -46,19 +50,25 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     $(".pane-right-not-header").append(AddTeamMembers.render().$el);
   },
   
-  // leaveTeam: function (event) {
-//     
-//     var that = this;
-//     var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
-//     team.members().remove(Crossedout.current_user);  
-//     this.collection.remove(team);
-//     $.ajax({
-//       url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
-//       type: "DELETE",
-//       success: function () {     
-//       }
-//     });
-//   },
+  leaveTeam: function (event) {
+    console.log("leave team")
+    var that = this;
+    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
+    team.members().remove(Crossedout.current_user);  
+    this.collection.remove(team);
+    
+    $.ajax({
+      url: "/teams/" + team.get("id") + "/users/" + Crossedout.current_user.id,
+      type: "DELETE",
+      success: function () {  
+        $("content-header").html("");
+        $("left-header").html("");
+        $("right-header").html("");
+        $("pane-left-not-header").html("");
+        $("pane-right-not-header").html("");   
+      }
+    });
+  },
   
   showProjectDetail: function (event) {
     event.preventDefault();
@@ -82,8 +92,31 @@ Crossedout.Views.CurrentUserTeamsIndex = Backbone.View.extend({
     $(".content-header").html("");
     $(".left-header").html("<span class='header-text'>Create Team</span>")  
     $(".pane-left-not-header").html(newTeamForm.render().$el);
-    $(".pane-right-not-header").html("")
-    
+    $(".pane-right-not-header").html("");
+    $(".right-header").html("");
+        
   },
   
+  inviteManageMembers: function (event) {
+    
+    var team = this.collection.get(parseInt($(event.currentTarget).attr("data-id")))
+    var teamMembers = new Crossedout.Collections.Users(team.members().models);
+    var addManageMembersModal = new Crossedout.Views.TeamAddMemberModalView({model: team, collection: teamMembers});
+    
+    $("#modal").html(addManageMembersModal.render().$el);
+    $("#myModal").modal({show: true, backdrop: false});
+  },
+  
+  maximizePane: function (event) {
+    // $(".content-left-pane").css({"right": "200px", "width": "75%"});
+    this.$el.find(".my-teams-header").before("<div class='minimize'><button><span class='glyphicon glyphicon-chevron-right'></span></button></div")
+    this.$el.find(".maximize").html("")
+    $(".content-left-pane").animate({"margin-left": "-22%", "width": "59%"}, 1000)
+  },
+  
+  minimizePane: function (event) {
+    this.$el.find(".my-teams-header").before("<div class='maximize'><button><span class='glyphicon glyphicon-chevron-left'></span></button></div")
+    this.$el.find(".minimize").html("")
+    $(".content-left-pane").animate({"margin-left": "5%", "width": "32%"}, 1000)
+  },
 });

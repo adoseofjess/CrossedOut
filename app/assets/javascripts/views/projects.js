@@ -51,6 +51,7 @@ Crossedout.Views.ProjectIndexView = Backbone.View.extend({
     // $(".content-right-pane").html("")
     
     $(".content-header").html("");
+    $(".right-header").html("");
     $(".left-header").html("<span class='header-text'>Create Project</span>")    
     $(".pane-left-not-header").html(projectNewView.render().$el);
     $(".pane-right-not-header").html("")

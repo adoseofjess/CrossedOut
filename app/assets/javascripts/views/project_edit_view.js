@@ -33,7 +33,7 @@ Crossedout.Views.ProjectEditView = Backbone.View.extend({
         var UpdatedProjectShowHeader = new Crossedout.Views.ProjectHeaderView({model: that.model})
         var UpdatedProjectShowView = new Crossedout.Views.ProjectShowView({model: that.model})
         $(".content-header").html(UpdatedProjectShowHeader.render().$el);
-        $(".content-left-pane").html(UpdatedProjectShowView.render().$el);
+        $(".pane-left-not-header").html(UpdatedProjectShowView.render().$el);
         
       }
     })

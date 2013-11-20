@@ -3,7 +3,8 @@ Crossedout::Application.routes.draw do
   
   resources :teams do
     resources :users, :only => [:index, :destroy]
-    post '/:user_id/:email', to: 'teams#add_member'
+    post 'invite/:email', to: 'teams#invite_member'
+    post 'add/:email', to: 'teams#add_member'
     
   end
     

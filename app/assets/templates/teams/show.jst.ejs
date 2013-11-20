@@ -10,6 +10,10 @@
 </div> -->
 
 <div class="all-projects">
+  <% if (projects.length == 0) { %>
+  Your team currently has no projects.
+  <% } %>
+
 <% projects.each(function(project) { %>
   <div class="project-show" data-id="<%= project.id %>">
   <a href="" class="project-show-link" data-id="<%= project.id %>"><%= project.get("title") %></a><br>

@@ -7,10 +7,10 @@ window.Crossedout = {
     Crossedout.users = new Crossedout.Collections.Users();
     var userData = JSON.parse($("#bootstrapped_current_user_json").html());
     var usersData = JSON.parse($("#bootstrapped_all_users_json").html());
-    
+
     Crossedout.current_user = new Crossedout.Models.User(userData, { parse: true });
     Crossedout.users.reset(usersData);
-
+    // $( ".sidebar" ).resizable();
     new Crossedout.Routers.CrossedOutRouter($(".three-panes"));
     Backbone.history.start();
     this.sidebar();   

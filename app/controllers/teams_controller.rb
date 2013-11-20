@@ -58,17 +58,28 @@ class TeamsController < ApplicationController
     end
   end
   
-  def add_member
-    @user_id = params[:user_id]
-    @email = params[:email] + "." + params[:format]
-   
-    @user = User.find(@user_id)
-    @team = Team.find(params[:team_id])
-    @team.members<<@user
-    @url = new_user_url
+  def invite_member
     
-    msg = UserMailer.welcome_email(@email, @team, @url)
-    msg.deliver
-    render :json => true
+    @email = params[:email] + "." + params[:format]
+    @user = User.find_by_username(@email)
+    @team = Team.find(params[:team_id])
+    
+    if @user.nil?
+      @url = new_user_url
+      msg = UserMailer.welcome_email(@email, @team, @url)
+      msg.deliver
+      render :json => true
+    else
+      @team.members<<@user
+      @url = new_session_url
+    
+      msg = UserMailer.welcome_email(@email, @team, @url)
+      msg.deliver
+      render :json => true
+    end
+  end
+  
+  def add_member
+    # /teams/:team_id/add/:email
   end
 end

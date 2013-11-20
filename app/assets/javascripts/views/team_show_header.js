@@ -24,7 +24,10 @@ Crossedout.Views.TeamShowHeaderView = Backbone.View.extend({
     this.model.destroy({
       success: function () {
         $(".content-header").html("");
-        $(".content-left-pane").html("");
+        $(".left-header").html("");
+        $(".right-header").html("");
+        $(".pane-left-not-header").html("");
+        $(".pane-right-not-header").html("");
       }
     })
   },

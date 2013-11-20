@@ -28,7 +28,8 @@ Crossedout.Views.ProjectHeaderView = Backbone.View.extend({
     this.model.destroy({
       success: function () {
         $(".content-header").html("");
-        $(".content-left-pane").html("");
+        $(".left-header").html("");
+        $(".pane-left-not-header").html("");
       }
     })
   },
@@ -36,6 +37,7 @@ Crossedout.Views.ProjectHeaderView = Backbone.View.extend({
   editProject: function () {
     var EditProjectView = new Crossedout.Views.ProjectEditView({model: this.model});
     $(".content-header").html(EditProjectView.render().$el);
+    
   },
 
 });
