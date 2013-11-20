@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   
   def destroy
     logout_current_user!
-    redirect_to index_url
+    redirect_to root_url
   end
   
   def new
