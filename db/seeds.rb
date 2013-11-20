@@ -22,6 +22,11 @@ Team.create({:title => "Wine Tasting"})
 Team.create({:title => "5k Training Group"})
 Team.create({:title => "Saturday Rock Climbing"})
 
+UserTeamJoin.create({:user_id => 1, :team_id => 1})
+UserTeamJoin.create({:user_id => 1, :team_id => 2})
+UserTeamJoin.create({:user_id => 1, :team_id => 3})
+UserTeamJoin.create({:user_id => 1, :team_id => 4})
+
 Project.create({:title => "Life of Pi", :description => "", :projectable_id => 1, :projectable_type => "Team"})
 Project.create({:title => "Plan Napa Valley trip", :description => "", :projectable_id => 2, :projectable_type => "Team"})
 Project.create({:title => "Look for gym membership", :description => "", :projectable_id => 3, :projectable_type => "Team"})
