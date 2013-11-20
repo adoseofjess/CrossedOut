@@ -339,7 +339,7 @@ input[type=text] {
   background: navajowhite;
 }
 
-.team-show-link, .project-index-link-text, .sidebar-link, .new-team-link, .project-new-link {
+.team-show-link, .sidebar-link, .new-team-link, .project-new-link {
   color: black;
 }
 
@@ -353,6 +353,23 @@ input[type=text] {
 /*  transition: color 0.3s ease;*/
   height: 50px;
 
+}
+
+.project-index-link {
+  transition: background 0.3s ease;
+/*  transition: color 0.3s ease;*/
+  height: 50px;
+  line-height: 50px;
+  padding-left: 10px;
+
+}
+
+.project-index-link a {
+  font-size: 20px;
+}
+
+.project-index-link:hover {
+  background: #a02323;
 }
 
 .sidebar-link {
